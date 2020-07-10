@@ -1,0 +1,355 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.1/css/ion.rangeSlider.min.css" />
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.1/js/ion.rangeSlider.min.js"></script>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script type="text/javascript" src='main.js'></script>
+    <style>
+
+        li a {
+            color: white
+        }
+
+            li a:hover {
+                color: white;
+                text-decoration: none
+            }
+
+
+        ul li:hover {
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <!-- ***** Preloader Start ***** -->
+    <div id="preloader">
+        <div class="jumper">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+    <!-- ***** Preloader End ***** -->
+    <!-------------------------------------------------------------- <section-1> ------------------------------------------------------------------->
+    <!--Navbar-->
+
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color:black; height:70px;">
+        <div class="container">
+
+            <a class="navbar-brand font-bold" href="/Car/HomeCarDetails"><h2>QGS<em style="font-style:normal;color:red">VL</em></h2></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-4" aria-controls="navbarSupportedContent-4" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent-4">
+                <ul class="navbar-nav ml-auto">
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Car/HomeCarDetails">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="http://localhost:50093/car/MyQuote?usr_email=@User.Identity.Name">My Quotes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Car/HomeCarDetails/#section1">What is Private Lease</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Car/FAQs">FAQ</a>
+                    </li>
+                    @{
+                        if (User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Account/Logout"><i class="fas fa-sign-out-alt"></i>Log Out</a>
+                            </li>
+                        }
+                    }
+                    @{
+                        if (!User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Account/Login?returnUrl=1"><i class="fas fa-sign-out-alt"></i>Login</a>
+                            </li>
+                        }
+                    }
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <br />
+    <br />
+    <br />
+
+    <!--/.Navbar-->
+    <!-------------------------------------------------------------- <section-3> ------------------------------------------------------------------->
+
+    <div class="container">
+        <div id="accordion">
+            <div class="row">
+                <div class="card" style="width:100%;">
+                    <button class="btn btn-light" style="width:100%; height:60px;" data-toggle="collapse" data-target="#collapseOne"
+                            aria-expanded="false" aria-controls="collapseOne">
+                        What is Private Lease
+                        <i class="fa fa-plus" style="float:right;"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="card" style="width: 100%;">
+                    <div class="collapse" id="collapseOne" aria-labelledby="headingOne" data-parent="#accordion">
+
+                        <p style="margin-left:2%;">
+                            A Private Lease is a long-term car leasing contract with services, for an agreed-upon term and total driving distance, designed specifically for individual customers.
+                            <br />
+                            The lease covers:
+                            <ul style="margin-left:2%;">
+                                <li> vehicle depreciation,</li>
+                                <li> road tax,</li>
+                                <li>civil liability insurance,</li>
+                                <li> legal protection insurance</li>
+                                <li> driver’s insurance,
+                                <li>  coverage of losses and damages to the vehicle (CASCO),</li>
+                                <li>  maintenance and repair costs,</li>
+                                <li>  roadside assistance,</li>
+                                <li>  “first immediate” class replacement vehicle (= compact cars such as Open Corsa, Renault Twingo, etc., for any repair or private use exceeding 2 hours),</li>
+                                <li>  winter and summer tyres (based on wear and tear).</li>
+                                <br />
+                        </p>
+                        <p>
+                            The lease does not cover:
+
+                            <li> fuel consumption,</li>
+                            <li> dines resulting from driving/parking infractions.</li>
+                            </ul>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="card" style="width:100%;">
+                    <button class="btn btn-light" style="width:100%; height:60px;" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        What are the terms option of private lease ?
+                        <i class="fa fa-plus" style="float:right;"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="card" style="width:100%;">
+                    <div class="collapse" id="collapseTwo" aria-labelledby="headingTwo" data-parent="#accordion">
+                        <p style="margin-left:2%;">You may take out a Private Lease for any term ranging from 24 to 48 months.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="card" style="width:100%;">
+                    <button class="btn btn-light" style="width:100%; height:60px;" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        What are the mains criteria used to calculate my monthly lease payment ?
+                        <i class="fa fa-plus" style="float:right;"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="row" style="height:auto;">
+                <div class="card" style="width:100%;">
+                    <div class="collapse" id="collapseThree" aria-labelledby="headingThree" data-parent="#accordion">
+                        <div class="card-body">
+                            Your monthly lease payment is primarily based on:
+
+                            <li>the vehicle selected (catalogue value, options, horsepower),</li>
+                            <li></lo>the term of your lease,</li>
+                            <li>the total driving distance set in your lease.</li>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="card" style="width:100%;">
+                    <button class="btn btn-light" style="width:100%; height:60px; float:left;" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                        How many kilometers can I drive in the Vehicle ?
+                        <i class="fa fa-plus" style="float:right;"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="card" style="width:100%;">
+                    <div class="collapse" id="collapseFour" aria-labelledby="headingFour" data-parent="#accordion">
+                        <div class="card-body">
+                            You are free to select your total driving distance when you sign your lease. The selected total driving distance is then indicated in your contract.
+
+                            You may exceed the total driving distance initially set in your lease and you may also travel fewer kilometres than initially expected. In either case, your lease payment will be reviewed according to your actual driving distance.
+
+                            That said, the total driving distance over the term of your lease may never exceed 105,000 km.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="card" style="width:100%;">
+                    <button class="btn btn-light" class="btn btn-light" style="width:100%; height:60px;" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                        How long can I use my vehicle ?
+                        <i class="fa fa-plus" style="float:right;"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="card" style="width:100%;">
+                    <div class="collapse" id="collapseFive" aria-labelledby="headingFive" data-parent="#accordion">
+                        <div class="card-body">
+                            The period of use is the same as the term of the lease, i.e. ranging from 24 to 48 months.
+
+                            The period of use may be reviewed over the course of the lease, but may not under any circumstances be less than 12 months or more than 50 months.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="card" style="width:100%;">
+                    <button class="btn btn-light" style="width:100%; height:60px;" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                        What happens if the number of kilometers driven is morer or less than the total driving
+                        distance indicated in the contract ?
+                        <i class="fa fa-plus" style="float:right;"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="card" style="width:100%;">
+                    <div class="collapse" id="collapseSix" aria-labelledby="headingSix" data-parent="#accordion">
+                        <div class="card-body">
+                            <p>In that case, your lease payment will be reviewed according to your actual driving distance (months/km).</p>
+
+                            <p> But don’t worry: there will never be any unpleasant surprises. When you receive your offer, you will also be given a chart (the “ALD Matrix”) showing the lease payments for all possible term and total driving distance combinations. You thus enjoy maximum flexibility and total transparency from the start.</p>
+
+                            <p> In the event you hit the maximum authorised driving distance (105,000 km) before your lease reaches its term, your lease is terminated and you are required to immediately return the vehicle. A detailed account of your lease payments will be reported in the chart, based on your actual driving distance.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="card" style="width:100%;">
+                    <button class="btn btn-light" style="width:100%; height:60px;" data-toggle="collapse" data-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+                        Can I change the term of myu lease driving distance or terminate my lease early ?
+                        <i class="fa fa-plus" style="float:right;"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="card" style="width:100%;">
+                    <div class="collapse" id="collapseSeven" aria-labelledby="headingSeven" data-parent="#accordion">
+                        <div class="card-body">
+                            Yes, you can change the term/total driving distance of your lease at any time during the lease period.
+
+                            If needed, you can terminate your contract early, after a minimum period of 12 months. You are required to give notice in advance, however.
+
+                            Your lease payment will be recalculated retroactively using the ALD Matrix, based on the new term (minimum 12 months) and total driving distance inputs.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="card" style="width:100%;">
+                    <button class="btn btn-light" style="width:100%; height:60px;" data-toggle="collapse" data-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+                        How does the ALD Matrix work ?
+                        <i class="fa fa-plus" style="float:right;"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="card" style="width:100%;">
+                    <div class="collapse" id="collapseEight" aria-labelledby="headingEight" data-parent="#accordion">
+                        <div class="card-body">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="card" style="width:100%;">
+                    <button class="btn btn-light" style="width:100%; height:60px;" data-toggle="collapse" data-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
+                        Is there a minimum or maximam age limit for the Private Lease deal ?
+                        <i class="fa fa-plus" style="float:right;"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="card" style="width:100%;">
+                    <div class="collapse" id="collapseNine" aria-labelledby="headingNine" data-parent="#accordion">
+                        <div class="card-body">
+                            No, but for insurance reasons, any regular driver of the vehicle must have a driver’s licence which has been valid for at least two years and be no more than 75 years old at the lease signing date.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="card" style="width:100%;">
+                    <button class="btn btn-light" style="width:100%; height:60px;" data-toggle="collapse" data-target="#collapseTen" aria-expanded="false" aria-controls="collapseTen">
+                        How can I pay my monthly lease payments ?
+                        <i class="fa fa-plus" style="float:right;"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="card" style="width:100%;">
+                    <div class="collapse" id="collapseTen" aria-labelledby="headingTen" data-parent="#accordion">
+                        <div class="card-body">
+                            The monthly lease payment is payable in advance, upon receipt of the invoice.
+                            Your monthly lease payments can be made by direct debit or by credit transfer.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br><br />
+    <!-------------------------------------------------------------- <section-4> ------------------------------------------------------------------->
+    <br /><br /><br /><br />
+
+
+    <footer class="footer fixed-bottom" style="background-color:black @*#2C3335;*@">
+        <div class="container" style="height: 60px;">
+            <div class="row justify-content-between">
+                <div class="col-md-3 pt-3">
+                    <ul class="list-inline quicklinks">
+                        <li class="list-inline-item">
+                            <a href="#" style="color: white;">&copy;&nbsp;Quote Generation System</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-6 pt-3">
+                    <ul class="list-inline quicklinks" style="color: white;">
+                        <li class="list-inline-item">
+                            |&nbsp;<a href="#" style="color: white;">Contact</a>
+                        </li>
+                        <li class="list-inline-item">
+                            |&nbsp;<a href="~/Pdfs/PrivatePolicy.pdf" style="color: white;">Private Policy</a>
+                        </li>
+                        <li class="list-inline-item">
+                            |&nbsp;<a href="~/Pdfs/TermsOfUse.pdf" style="color: white;">Terms of Use</a>
+                        </li>
+                        <li class="list-inline-item">
+                            |&nbsp;<a href="~/Pdfs/CookiePolicy.pdf" style="color: white;">Cookie Policy</a>&nbsp;|
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

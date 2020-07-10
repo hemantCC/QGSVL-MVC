@@ -1,0 +1,22 @@
+﻿table {
+    border-collapse: separate;
+    border-spacing: 0 1em;
+}
+
+td input{
+    width:85%;
+    height:40px;
+}
+
+select {
+    width: 85%;
+    height: 40px;
+}
+
+/*label {
+    /* Other styling... */
+    text-align: right;
+    clear: both;
+    float: left;
+    margin-right: 15px;
+}*/

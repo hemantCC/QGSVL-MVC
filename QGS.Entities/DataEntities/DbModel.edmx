@@ -1,0 +1,1416 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DbQGSVLModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tblBankDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="QuoteId" Type="int" />
+          <Property Name="IBAN" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tblContractType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tblDocument">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DocumentType" Type="int" />
+          <Property Name="DocumentPath" Type="nvarchar" MaxLength="200" />
+          <Property Name="QuoteId" Type="int" />
+        </EntityType>
+        <EntityType Name="tblDocumentType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tblDriver">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="Prefix" Type="nvarchar" MaxLength="20" />
+          <Property Name="FirstName" Type="varchar" MaxLength="50" />
+          <Property Name="LastName" Type="varchar" MaxLength="50" />
+          <Property Name="DateOfBirth" Type="date" />
+        </EntityType>
+        <EntityType Name="tblEmployementDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="EmployementStatus" Type="int" />
+          <Property Name="EmployeeName" Type="varchar" MaxLength="100" />
+          <Property Name="ContractType" Type="int" />
+          <Property Name="Address1" Type="nvarchar" MaxLength="200" />
+          <Property Name="Address2" Type="nvarchar" MaxLength="200" />
+          <Property Name="PostCode" Type="int" />
+          <Property Name="Country" Type="varchar" MaxLength="50" />
+          <Property Name="City" Type="varchar" MaxLength="50" />
+          <Property Name="StartDate" Type="date" />
+        </EntityType>
+        <EntityType Name="tblEmployementStatus">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tblEquipment">
+          <Key>
+            <PropertyRef Name="EqId" />
+          </Key>
+          <Property Name="EqId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CarId" Type="int" />
+          <Property Name="EquipmentType" Type="varchar" MaxLength="50" />
+          <Property Name="Features" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="tblIncludedServices">
+          <Key>
+            <PropertyRef Name="IsId" />
+          </Key>
+          <Property Name="IsId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ServiceName" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="tblInsurance">
+          <Key>
+            <PropertyRef Name="InsuranceId" />
+          </Key>
+          <Property Name="InsuranceId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Term(Month)" Type="int" />
+          <Property Name="InsurancePrice" Type="int" />
+        </EntityType>
+        <EntityType Name="tblMaritalStatus">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tblMileage">
+          <Key>
+            <PropertyRef Name="MileageId" />
+          </Key>
+          <Property Name="MileageId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Mileage(K)" Type="int" />
+        </EntityType>
+        <EntityType Name="tblNationality">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Nationality" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tblPaybackTime">
+          <Key>
+            <PropertyRef Name="PaybackTimeId" />
+          </Key>
+          <Property Name="PaybackTimeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PaybackTime(Month)" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblPropertyStatus">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tblQuote">
+          <Key>
+            <PropertyRef Name="QuoteId" />
+          </Key>
+          <Property Name="QuoteId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="CarId" Type="int" />
+          <Property Name="Date" Type="date" Nullable="false" />
+          <Property Name="InsuranceId" Type="int" />
+          <Property Name="MileageId" Type="int" />
+          <Property Name="TotalPrice" Type="int" />
+          <Property Name="StatusId" Type="int" />
+          <Property Name="PaybackTimeId" Type="int" />
+        </EntityType>
+        <EntityType Name="tblRentDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="NetMonthyIncome" Type="int" />
+          <Property Name="RentalIncome" Type="int" />
+          <Property Name="PropertyStatus" Type="int" />
+          <Property Name="CreditCost" Type="int" />
+          <Property Name="MonthyRent" Type="int" />
+        </EntityType>
+        <EntityType Name="tblRoleManagement">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="RoleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleName" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblStatus">
+          <Key>
+            <PropertyRef Name="StatusId" />
+          </Key>
+          <Property Name="StatusId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Status" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="tblUser">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserEmail" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Prefix" Type="varchar" MaxLength="5" />
+          <Property Name="FirstName" Type="varchar" MaxLength="100" />
+          <Property Name="LastName" Type="varchar" MaxLength="100" />
+          <Property Name="Contact" Type="nvarchar" MaxLength="15" />
+          <Property Name="RoleId" Type="int" />
+          <Property Name="DateOfBirth" Type="date" />
+          <Property Name="isMainDriver" Type="char" MaxLength="10" />
+          <Property Name="MaritalStatus" Type="int" />
+          <Property Name="RegistrationNumber" Type="int" />
+          <Property Name="Address1" Type="nvarchar" MaxLength="200" />
+          <Property Name="Address2" Type="nvarchar" MaxLength="200" />
+          <Property Name="Address3" Type="nvarchar" MaxLength="200" />
+          <Property Name="PostCode" Type="int" />
+          <Property Name="City" Type="varchar" MaxLength="50" />
+          <Property Name="Nationality" Type="int" />
+          <Property Name="LivedSince" Type="date" />
+        </EntityType>
+        <EntityType Name="tblVehicleDetails">
+          <Key>
+            <PropertyRef Name="CarId" />
+          </Key>
+          <Property Name="CarId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Image" Type="nvarchar(max)" />
+          <Property Name="Type" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Brand" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ModelName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="HorsePower(HP)" Type="varchar" MaxLength="50" />
+          <Property Name="Consumption(L/100Km)" Type="varchar" MaxLength="50" />
+          <Property Name="Co2Emission(g/Km)" Type="varchar" MaxLength="50" />
+          <Property Name="FuelType" Type="varchar" MaxLength="20" />
+          <Property Name="Seating" Type="int" />
+          <Property Name="Abs" Type="bit" />
+          <Property Name="Airbag" Type="int" />
+          <Property Name="Transmission" Type="varchar" MaxLength="20" />
+          <Property Name="Colour" Type="varchar" MaxLength="20" />
+          <Property Name="Price" Type="int" />
+        </EntityType>
+        <Association Name="FK_tblBankDetail_tblQuote">
+          <End Role="tblQuote" Type="Self.tblQuote" Multiplicity="0..1" />
+          <End Role="tblBankDetail" Type="Self.tblBankDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblQuote">
+              <PropertyRef Name="QuoteId" />
+            </Principal>
+            <Dependent Role="tblBankDetail">
+              <PropertyRef Name="QuoteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblBankDetail_tblUser">
+          <End Role="tblUser" Type="Self.tblUser" Multiplicity="0..1" />
+          <End Role="tblBankDetail" Type="Self.tblBankDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="tblBankDetail">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblDocument_tblDocumentType">
+          <End Role="tblDocumentType" Type="Self.tblDocumentType" Multiplicity="0..1" />
+          <End Role="tblDocument" Type="Self.tblDocument" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDocumentType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblDocument">
+              <PropertyRef Name="DocumentType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblDocument_tblQuote">
+          <End Role="tblQuote" Type="Self.tblQuote" Multiplicity="0..1" />
+          <End Role="tblDocument" Type="Self.tblDocument" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblQuote">
+              <PropertyRef Name="QuoteId" />
+            </Principal>
+            <Dependent Role="tblDocument">
+              <PropertyRef Name="QuoteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblDriver_tblUser">
+          <End Role="tblUser" Type="Self.tblUser" Multiplicity="0..1" />
+          <End Role="tblDriver" Type="Self.tblDriver" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="tblDriver">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblEmployementDetail_tblContractType">
+          <End Role="tblContractType" Type="Self.tblContractType" Multiplicity="0..1" />
+          <End Role="tblEmployementDetail" Type="Self.tblEmployementDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblContractType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblEmployementDetail">
+              <PropertyRef Name="ContractType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblEmployementDetail_tblEmployeeStatus">
+          <End Role="tblEmployementStatus" Type="Self.tblEmployementStatus" Multiplicity="0..1" />
+          <End Role="tblEmployementDetail" Type="Self.tblEmployementDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblEmployementStatus">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblEmployementDetail">
+              <PropertyRef Name="EmployementStatus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblEmployementDetail_tblUser">
+          <End Role="tblUser" Type="Self.tblUser" Multiplicity="0..1" />
+          <End Role="tblEmployementDetail" Type="Self.tblEmployementDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="tblEmployementDetail">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblQuote_tblUser">
+          <End Role="tblUser" Type="Self.tblUser" Multiplicity="1" />
+          <End Role="tblQuote" Type="Self.tblQuote" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="tblQuote">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblRentDetail_tblPropertyStatus">
+          <End Role="tblPropertyStatus" Type="Self.tblPropertyStatus" Multiplicity="0..1" />
+          <End Role="tblRentDetail" Type="Self.tblRentDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblPropertyStatus">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblRentDetail">
+              <PropertyRef Name="PropertyStatus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblRentDetail_tblUser">
+          <End Role="tblUser" Type="Self.tblUser" Multiplicity="0..1" />
+          <End Role="tblRentDetail" Type="Self.tblRentDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="tblRentDetail">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblUser_tblMaritalStatus">
+          <End Role="tblMaritalStatus" Type="Self.tblMaritalStatus" Multiplicity="0..1" />
+          <End Role="tblUser" Type="Self.tblUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblMaritalStatus">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblUser">
+              <PropertyRef Name="MaritalStatus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblUser_tblNationality">
+          <End Role="tblNationality" Type="Self.tblNationality" Multiplicity="0..1" />
+          <End Role="tblUser" Type="Self.tblUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblNationality">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblUser">
+              <PropertyRef Name="Nationality" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblUser_tblRoleManager">
+          <End Role="tblRoleManagement" Type="Self.tblRoleManagement" Multiplicity="0..1" />
+          <End Role="tblUser" Type="Self.tblUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblRoleManagement">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="tblUser">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblVehicleDetails_tblEquipment">
+          <End Role="tblVehicleDetails" Type="Self.tblVehicleDetails" Multiplicity="0..1" />
+          <End Role="tblEquipment" Type="Self.tblEquipment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblVehicleDetails">
+              <PropertyRef Name="CarId" />
+            </Principal>
+            <Dependent Role="tblEquipment">
+              <PropertyRef Name="CarId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="tblQuote_fk1">
+          <End Role="tblVehicleDetails" Type="Self.tblVehicleDetails" Multiplicity="0..1" />
+          <End Role="tblQuote" Type="Self.tblQuote" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblVehicleDetails">
+              <PropertyRef Name="CarId" />
+            </Principal>
+            <Dependent Role="tblQuote">
+              <PropertyRef Name="CarId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="tblQuote_fk2">
+          <End Role="tblInsurance" Type="Self.tblInsurance" Multiplicity="0..1" />
+          <End Role="tblQuote" Type="Self.tblQuote" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblInsurance">
+              <PropertyRef Name="InsuranceId" />
+            </Principal>
+            <Dependent Role="tblQuote">
+              <PropertyRef Name="InsuranceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="tblQuote_fk3">
+          <End Role="tblMileage" Type="Self.tblMileage" Multiplicity="0..1" />
+          <End Role="tblQuote" Type="Self.tblQuote" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblMileage">
+              <PropertyRef Name="MileageId" />
+            </Principal>
+            <Dependent Role="tblQuote">
+              <PropertyRef Name="MileageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="tblQuote_fk4">
+          <End Role="tblStatus" Type="Self.tblStatus" Multiplicity="0..1" />
+          <End Role="tblQuote" Type="Self.tblQuote" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblStatus">
+              <PropertyRef Name="StatusId" />
+            </Principal>
+            <Dependent Role="tblQuote">
+              <PropertyRef Name="StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="tblQuote_fk5">
+          <End Role="tblPaybackTime" Type="Self.tblPaybackTime" Multiplicity="0..1" />
+          <End Role="tblQuote" Type="Self.tblQuote" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblPaybackTime">
+              <PropertyRef Name="PaybackTimeId" />
+            </Principal>
+            <Dependent Role="tblQuote">
+              <PropertyRef Name="PaybackTimeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DbQGSVLModelStoreContainer">
+          <EntitySet Name="tblBankDetail" EntityType="Self.tblBankDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblContractType" EntityType="Self.tblContractType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblDocument" EntityType="Self.tblDocument" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblDocumentType" EntityType="Self.tblDocumentType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblDriver" EntityType="Self.tblDriver" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblEmployementDetail" EntityType="Self.tblEmployementDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblEmployementStatus" EntityType="Self.tblEmployementStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblEquipment" EntityType="Self.tblEquipment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblIncludedServices" EntityType="Self.tblIncludedServices" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblInsurance" EntityType="Self.tblInsurance" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblMaritalStatus" EntityType="Self.tblMaritalStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblMileage" EntityType="Self.tblMileage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblNationality" EntityType="Self.tblNationality" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblPaybackTime" EntityType="Self.tblPaybackTime" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblPropertyStatus" EntityType="Self.tblPropertyStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblQuote" EntityType="Self.tblQuote" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblRentDetail" EntityType="Self.tblRentDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblRoleManagement" EntityType="Self.tblRoleManagement" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblStatus" EntityType="Self.tblStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblUser" EntityType="Self.tblUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblVehicleDetails" EntityType="Self.tblVehicleDetails" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_tblBankDetail_tblQuote" Association="Self.FK_tblBankDetail_tblQuote">
+            <End Role="tblQuote" EntitySet="tblQuote" />
+            <End Role="tblBankDetail" EntitySet="tblBankDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblBankDetail_tblUser" Association="Self.FK_tblBankDetail_tblUser">
+            <End Role="tblUser" EntitySet="tblUser" />
+            <End Role="tblBankDetail" EntitySet="tblBankDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblDocument_tblDocumentType" Association="Self.FK_tblDocument_tblDocumentType">
+            <End Role="tblDocumentType" EntitySet="tblDocumentType" />
+            <End Role="tblDocument" EntitySet="tblDocument" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblDocument_tblQuote" Association="Self.FK_tblDocument_tblQuote">
+            <End Role="tblQuote" EntitySet="tblQuote" />
+            <End Role="tblDocument" EntitySet="tblDocument" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblDriver_tblUser" Association="Self.FK_tblDriver_tblUser">
+            <End Role="tblUser" EntitySet="tblUser" />
+            <End Role="tblDriver" EntitySet="tblDriver" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblEmployementDetail_tblContractType" Association="Self.FK_tblEmployementDetail_tblContractType">
+            <End Role="tblContractType" EntitySet="tblContractType" />
+            <End Role="tblEmployementDetail" EntitySet="tblEmployementDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblEmployementDetail_tblEmployeeStatus" Association="Self.FK_tblEmployementDetail_tblEmployeeStatus">
+            <End Role="tblEmployementStatus" EntitySet="tblEmployementStatus" />
+            <End Role="tblEmployementDetail" EntitySet="tblEmployementDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblEmployementDetail_tblUser" Association="Self.FK_tblEmployementDetail_tblUser">
+            <End Role="tblUser" EntitySet="tblUser" />
+            <End Role="tblEmployementDetail" EntitySet="tblEmployementDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblQuote_tblUser" Association="Self.FK_tblQuote_tblUser">
+            <End Role="tblUser" EntitySet="tblUser" />
+            <End Role="tblQuote" EntitySet="tblQuote" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblRentDetail_tblPropertyStatus" Association="Self.FK_tblRentDetail_tblPropertyStatus">
+            <End Role="tblPropertyStatus" EntitySet="tblPropertyStatus" />
+            <End Role="tblRentDetail" EntitySet="tblRentDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblRentDetail_tblUser" Association="Self.FK_tblRentDetail_tblUser">
+            <End Role="tblUser" EntitySet="tblUser" />
+            <End Role="tblRentDetail" EntitySet="tblRentDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblUser_tblMaritalStatus" Association="Self.FK_tblUser_tblMaritalStatus">
+            <End Role="tblMaritalStatus" EntitySet="tblMaritalStatus" />
+            <End Role="tblUser" EntitySet="tblUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblUser_tblNationality" Association="Self.FK_tblUser_tblNationality">
+            <End Role="tblNationality" EntitySet="tblNationality" />
+            <End Role="tblUser" EntitySet="tblUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblUser_tblRoleManager" Association="Self.FK_tblUser_tblRoleManager">
+            <End Role="tblRoleManagement" EntitySet="tblRoleManagement" />
+            <End Role="tblUser" EntitySet="tblUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblVehicleDetails_tblEquipment" Association="Self.FK_tblVehicleDetails_tblEquipment">
+            <End Role="tblVehicleDetails" EntitySet="tblVehicleDetails" />
+            <End Role="tblEquipment" EntitySet="tblEquipment" />
+          </AssociationSet>
+          <AssociationSet Name="tblQuote_fk1" Association="Self.tblQuote_fk1">
+            <End Role="tblVehicleDetails" EntitySet="tblVehicleDetails" />
+            <End Role="tblQuote" EntitySet="tblQuote" />
+          </AssociationSet>
+          <AssociationSet Name="tblQuote_fk2" Association="Self.tblQuote_fk2">
+            <End Role="tblInsurance" EntitySet="tblInsurance" />
+            <End Role="tblQuote" EntitySet="tblQuote" />
+          </AssociationSet>
+          <AssociationSet Name="tblQuote_fk3" Association="Self.tblQuote_fk3">
+            <End Role="tblMileage" EntitySet="tblMileage" />
+            <End Role="tblQuote" EntitySet="tblQuote" />
+          </AssociationSet>
+          <AssociationSet Name="tblQuote_fk4" Association="Self.tblQuote_fk4">
+            <End Role="tblStatus" EntitySet="tblStatus" />
+            <End Role="tblQuote" EntitySet="tblQuote" />
+          </AssociationSet>
+          <AssociationSet Name="tblQuote_fk5" Association="Self.tblQuote_fk5">
+            <End Role="tblPaybackTime" EntitySet="tblPaybackTime" />
+            <End Role="tblQuote" EntitySet="tblQuote" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DbQGSVLModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tblBankDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="QuoteId" Type="Int32" />
+          <Property Name="IBAN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tblQuote" Relationship="Self.FK_tblBankDetail_tblQuote" FromRole="tblBankDetail" ToRole="tblQuote" />
+          <NavigationProperty Name="tblUser" Relationship="Self.FK_tblBankDetail_tblUser" FromRole="tblBankDetail" ToRole="tblUser" />
+        </EntityType>
+        <EntityType Name="tblContractType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tblEmployementDetails" Relationship="Self.FK_tblEmployementDetail_tblContractType" FromRole="tblContractType" ToRole="tblEmployementDetail" />
+        </EntityType>
+        <EntityType Name="tblDocument">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DocumentType" Type="Int32" />
+          <Property Name="DocumentPath" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="QuoteId" Type="Int32" />
+          <NavigationProperty Name="tblDocumentType" Relationship="Self.FK_tblDocument_tblDocumentType" FromRole="tblDocument" ToRole="tblDocumentType" />
+          <NavigationProperty Name="tblQuote" Relationship="Self.FK_tblDocument_tblQuote" FromRole="tblDocument" ToRole="tblQuote" />
+        </EntityType>
+        <EntityType Name="tblDocumentType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tblDocuments" Relationship="Self.FK_tblDocument_tblDocumentType" FromRole="tblDocumentType" ToRole="tblDocument" />
+        </EntityType>
+        <EntityType Name="tblDriver">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="Prefix" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DateOfBirth" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="tblUser" Relationship="Self.FK_tblDriver_tblUser" FromRole="tblDriver" ToRole="tblUser" />
+        </EntityType>
+        <EntityType Name="tblEmployementDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="EmployementStatus" Type="Int32" />
+          <Property Name="EmployeeName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ContractType" Type="Int32" />
+          <Property Name="Address1" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Address2" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="PostCode" Type="Int32" />
+          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="StartDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="tblContractType" Relationship="Self.FK_tblEmployementDetail_tblContractType" FromRole="tblEmployementDetail" ToRole="tblContractType" />
+          <NavigationProperty Name="tblEmployementStatu" Relationship="Self.FK_tblEmployementDetail_tblEmployeeStatus" FromRole="tblEmployementDetail" ToRole="tblEmployementStatus" />
+          <NavigationProperty Name="tblUser" Relationship="Self.FK_tblEmployementDetail_tblUser" FromRole="tblEmployementDetail" ToRole="tblUser" />
+        </EntityType>
+        <EntityType Name="tblEmployementStatu">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tblEmployementDetails" Relationship="Self.FK_tblEmployementDetail_tblEmployeeStatus" FromRole="tblEmployementStatus" ToRole="tblEmployementDetail" />
+        </EntityType>
+        <EntityType Name="tblEquipment">
+          <Key>
+            <PropertyRef Name="EqId" />
+          </Key>
+          <Property Name="EqId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CarId" Type="Int32" />
+          <Property Name="EquipmentType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Features" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblVehicleDetail" Relationship="Self.FK_tblVehicleDetails_tblEquipment" FromRole="tblEquipment" ToRole="tblVehicleDetails" />
+        </EntityType>
+        <EntityType Name="tblIncludedService">
+          <Key>
+            <PropertyRef Name="IsId" />
+          </Key>
+          <Property Name="IsId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ServiceName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tblInsurance">
+          <Key>
+            <PropertyRef Name="InsuranceId" />
+          </Key>
+          <Property Name="InsuranceId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Term_Month_" Type="Int32" />
+          <Property Name="InsurancePrice" Type="Int32" />
+          <NavigationProperty Name="tblQuotes" Relationship="Self.tblQuote_fk2" FromRole="tblInsurance" ToRole="tblQuote" />
+        </EntityType>
+        <EntityType Name="tblMaritalStatu">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tblUsers" Relationship="Self.FK_tblUser_tblMaritalStatus" FromRole="tblMaritalStatus" ToRole="tblUser" />
+        </EntityType>
+        <EntityType Name="tblMileage">
+          <Key>
+            <PropertyRef Name="MileageId" />
+          </Key>
+          <Property Name="MileageId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Mileage_K_" Type="Int32" />
+          <NavigationProperty Name="tblQuotes" Relationship="Self.tblQuote_fk3" FromRole="tblMileage" ToRole="tblQuote" />
+        </EntityType>
+        <EntityType Name="tblNationality">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Nationality" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tblUsers" Relationship="Self.FK_tblUser_tblNationality" FromRole="tblNationality" ToRole="tblUser" />
+        </EntityType>
+        <EntityType Name="tblPaybackTime">
+          <Key>
+            <PropertyRef Name="PaybackTimeId" />
+          </Key>
+          <Property Name="PaybackTimeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PaybackTime_Month_" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tblQuotes" Relationship="Self.tblQuote_fk5" FromRole="tblPaybackTime" ToRole="tblQuote" />
+        </EntityType>
+        <EntityType Name="tblPropertyStatu">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tblRentDetails" Relationship="Self.FK_tblRentDetail_tblPropertyStatus" FromRole="tblPropertyStatus" ToRole="tblRentDetail" />
+        </EntityType>
+        <EntityType Name="tblQuote">
+          <Key>
+            <PropertyRef Name="QuoteId" />
+          </Key>
+          <Property Name="QuoteId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="CarId" Type="Int32" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="InsuranceId" Type="Int32" />
+          <Property Name="MileageId" Type="Int32" />
+          <Property Name="TotalPrice" Type="Int32" />
+          <Property Name="StatusId" Type="Int32" />
+          <Property Name="PaybackTimeId" Type="Int32" />
+          <NavigationProperty Name="tblBankDetails" Relationship="Self.FK_tblBankDetail_tblQuote" FromRole="tblQuote" ToRole="tblBankDetail" />
+          <NavigationProperty Name="tblDocuments" Relationship="Self.FK_tblDocument_tblQuote" FromRole="tblQuote" ToRole="tblDocument" />
+          <NavigationProperty Name="tblInsurance" Relationship="Self.tblQuote_fk2" FromRole="tblQuote" ToRole="tblInsurance" />
+          <NavigationProperty Name="tblMileage" Relationship="Self.tblQuote_fk3" FromRole="tblQuote" ToRole="tblMileage" />
+          <NavigationProperty Name="tblPaybackTime" Relationship="Self.tblQuote_fk5" FromRole="tblQuote" ToRole="tblPaybackTime" />
+          <NavigationProperty Name="tblUser" Relationship="Self.FK_tblQuote_tblUser" FromRole="tblQuote" ToRole="tblUser" />
+          <NavigationProperty Name="tblVehicleDetail" Relationship="Self.tblQuote_fk1" FromRole="tblQuote" ToRole="tblVehicleDetails" />
+          <NavigationProperty Name="tblStatu" Relationship="Self.tblQuote_fk4" FromRole="tblQuote" ToRole="tblStatus" />
+        </EntityType>
+        <EntityType Name="tblRentDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="NetMonthyIncome" Type="Int32" />
+          <Property Name="RentalIncome" Type="Int32" />
+          <Property Name="PropertyStatus" Type="Int32" />
+          <Property Name="CreditCost" Type="Int32" />
+          <Property Name="MonthyRent" Type="Int32" />
+          <NavigationProperty Name="tblPropertyStatu" Relationship="Self.FK_tblRentDetail_tblPropertyStatus" FromRole="tblRentDetail" ToRole="tblPropertyStatus" />
+          <NavigationProperty Name="tblUser" Relationship="Self.FK_tblRentDetail_tblUser" FromRole="tblRentDetail" ToRole="tblUser" />
+        </EntityType>
+        <EntityType Name="tblRoleManagement">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="RoleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="tblUsers" Relationship="Self.FK_tblUser_tblRoleManager" FromRole="tblRoleManagement" ToRole="tblUser" />
+        </EntityType>
+        <EntityType Name="tblStatu">
+          <Key>
+            <PropertyRef Name="StatusId" />
+          </Key>
+          <Property Name="StatusId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Status" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tblQuotes" Relationship="Self.tblQuote_fk4" FromRole="tblStatus" ToRole="tblQuote" />
+        </EntityType>
+        <EntityType Name="tblUser">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Prefix" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Contact" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="RoleId" Type="Int32" />
+          <Property Name="DateOfBirth" Type="DateTime" Precision="0" />
+          <Property Name="isMainDriver" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="MaritalStatus" Type="Int32" />
+          <Property Name="RegistrationNumber" Type="Int32" />
+          <Property Name="Address1" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Address2" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Address3" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="PostCode" Type="Int32" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Nationality" Type="Int32" />
+          <Property Name="LivedSince" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="tblBankDetails" Relationship="Self.FK_tblBankDetail_tblUser" FromRole="tblUser" ToRole="tblBankDetail" />
+          <NavigationProperty Name="tblDrivers" Relationship="Self.FK_tblDriver_tblUser" FromRole="tblUser" ToRole="tblDriver" />
+          <NavigationProperty Name="tblEmployementDetails" Relationship="Self.FK_tblEmployementDetail_tblUser" FromRole="tblUser" ToRole="tblEmployementDetail" />
+          <NavigationProperty Name="tblMaritalStatu" Relationship="Self.FK_tblUser_tblMaritalStatus" FromRole="tblUser" ToRole="tblMaritalStatus" />
+          <NavigationProperty Name="tblNationality" Relationship="Self.FK_tblUser_tblNationality" FromRole="tblUser" ToRole="tblNationality" />
+          <NavigationProperty Name="tblQuotes" Relationship="Self.FK_tblQuote_tblUser" FromRole="tblUser" ToRole="tblQuote" />
+          <NavigationProperty Name="tblRentDetails" Relationship="Self.FK_tblRentDetail_tblUser" FromRole="tblUser" ToRole="tblRentDetail" />
+          <NavigationProperty Name="tblRoleManagement" Relationship="Self.FK_tblUser_tblRoleManager" FromRole="tblUser" ToRole="tblRoleManagement" />
+        </EntityType>
+        <EntityType Name="tblVehicleDetail">
+          <Key>
+            <PropertyRef Name="CarId" />
+          </Key>
+          <Property Name="CarId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Brand" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ModelName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="HorsePower_HP_" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Consumption_L_100Km_" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Co2Emission_g_Km_" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FuelType" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Seating" Type="Int32" />
+          <Property Name="Abs" Type="Boolean" />
+          <Property Name="Airbag" Type="Int32" />
+          <Property Name="Transmission" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Colour" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Price" Type="Int32" />
+          <NavigationProperty Name="tblEquipments" Relationship="Self.FK_tblVehicleDetails_tblEquipment" FromRole="tblVehicleDetails" ToRole="tblEquipment" />
+          <NavigationProperty Name="tblQuotes" Relationship="Self.tblQuote_fk1" FromRole="tblVehicleDetails" ToRole="tblQuote" />
+        </EntityType>
+        <Association Name="FK_tblBankDetail_tblQuote">
+          <End Role="tblQuote" Type="Self.tblQuote" Multiplicity="0..1" />
+          <End Role="tblBankDetail" Type="Self.tblBankDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblQuote">
+              <PropertyRef Name="QuoteId" />
+            </Principal>
+            <Dependent Role="tblBankDetail">
+              <PropertyRef Name="QuoteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblBankDetail_tblUser">
+          <End Role="tblUser" Type="Self.tblUser" Multiplicity="0..1" />
+          <End Role="tblBankDetail" Type="Self.tblBankDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="tblBankDetail">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblEmployementDetail_tblContractType">
+          <End Role="tblContractType" Type="Self.tblContractType" Multiplicity="0..1" />
+          <End Role="tblEmployementDetail" Type="Self.tblEmployementDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblContractType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblEmployementDetail">
+              <PropertyRef Name="ContractType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblDocument_tblDocumentType">
+          <End Role="tblDocumentType" Type="Self.tblDocumentType" Multiplicity="0..1" />
+          <End Role="tblDocument" Type="Self.tblDocument" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDocumentType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblDocument">
+              <PropertyRef Name="DocumentType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblDocument_tblQuote">
+          <End Role="tblQuote" Type="Self.tblQuote" Multiplicity="0..1" />
+          <End Role="tblDocument" Type="Self.tblDocument" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblQuote">
+              <PropertyRef Name="QuoteId" />
+            </Principal>
+            <Dependent Role="tblDocument">
+              <PropertyRef Name="QuoteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblDriver_tblUser">
+          <End Role="tblUser" Type="Self.tblUser" Multiplicity="0..1" />
+          <End Role="tblDriver" Type="Self.tblDriver" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="tblDriver">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblEmployementDetail_tblEmployeeStatus">
+          <End Role="tblEmployementStatus" Type="Self.tblEmployementStatu" Multiplicity="0..1" />
+          <End Role="tblEmployementDetail" Type="Self.tblEmployementDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblEmployementStatus">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblEmployementDetail">
+              <PropertyRef Name="EmployementStatus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblEmployementDetail_tblUser">
+          <End Role="tblUser" Type="Self.tblUser" Multiplicity="0..1" />
+          <End Role="tblEmployementDetail" Type="Self.tblEmployementDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="tblEmployementDetail">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblVehicleDetails_tblEquipment">
+          <End Role="tblVehicleDetails" Type="Self.tblVehicleDetail" Multiplicity="0..1" />
+          <End Role="tblEquipment" Type="Self.tblEquipment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblVehicleDetails">
+              <PropertyRef Name="CarId" />
+            </Principal>
+            <Dependent Role="tblEquipment">
+              <PropertyRef Name="CarId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="tblQuote_fk2">
+          <End Role="tblInsurance" Type="Self.tblInsurance" Multiplicity="0..1" />
+          <End Role="tblQuote" Type="Self.tblQuote" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblInsurance">
+              <PropertyRef Name="InsuranceId" />
+            </Principal>
+            <Dependent Role="tblQuote">
+              <PropertyRef Name="InsuranceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblUser_tblMaritalStatus">
+          <End Role="tblMaritalStatus" Type="Self.tblMaritalStatu" Multiplicity="0..1" />
+          <End Role="tblUser" Type="Self.tblUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblMaritalStatus">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblUser">
+              <PropertyRef Name="MaritalStatus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="tblQuote_fk3">
+          <End Role="tblMileage" Type="Self.tblMileage" Multiplicity="0..1" />
+          <End Role="tblQuote" Type="Self.tblQuote" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblMileage">
+              <PropertyRef Name="MileageId" />
+            </Principal>
+            <Dependent Role="tblQuote">
+              <PropertyRef Name="MileageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblUser_tblNationality">
+          <End Role="tblNationality" Type="Self.tblNationality" Multiplicity="0..1" />
+          <End Role="tblUser" Type="Self.tblUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblNationality">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblUser">
+              <PropertyRef Name="Nationality" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="tblQuote_fk5">
+          <End Role="tblPaybackTime" Type="Self.tblPaybackTime" Multiplicity="0..1" />
+          <End Role="tblQuote" Type="Self.tblQuote" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblPaybackTime">
+              <PropertyRef Name="PaybackTimeId" />
+            </Principal>
+            <Dependent Role="tblQuote">
+              <PropertyRef Name="PaybackTimeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblRentDetail_tblPropertyStatus">
+          <End Role="tblPropertyStatus" Type="Self.tblPropertyStatu" Multiplicity="0..1" />
+          <End Role="tblRentDetail" Type="Self.tblRentDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblPropertyStatus">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblRentDetail">
+              <PropertyRef Name="PropertyStatus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblQuote_tblUser">
+          <End Role="tblUser" Type="Self.tblUser" Multiplicity="1" />
+          <End Role="tblQuote" Type="Self.tblQuote" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="tblQuote">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="tblQuote_fk1">
+          <End Role="tblVehicleDetails" Type="Self.tblVehicleDetail" Multiplicity="0..1" />
+          <End Role="tblQuote" Type="Self.tblQuote" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblVehicleDetails">
+              <PropertyRef Name="CarId" />
+            </Principal>
+            <Dependent Role="tblQuote">
+              <PropertyRef Name="CarId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="tblQuote_fk4">
+          <End Role="tblStatus" Type="Self.tblStatu" Multiplicity="0..1" />
+          <End Role="tblQuote" Type="Self.tblQuote" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblStatus">
+              <PropertyRef Name="StatusId" />
+            </Principal>
+            <Dependent Role="tblQuote">
+              <PropertyRef Name="StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblRentDetail_tblUser">
+          <End Role="tblUser" Type="Self.tblUser" Multiplicity="0..1" />
+          <End Role="tblRentDetail" Type="Self.tblRentDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="tblRentDetail">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblUser_tblRoleManager">
+          <End Role="tblRoleManagement" Type="Self.tblRoleManagement" Multiplicity="0..1" />
+          <End Role="tblUser" Type="Self.tblUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblRoleManagement">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="tblUser">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DbQGSVLEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tblBankDetails" EntityType="Self.tblBankDetail" />
+          <EntitySet Name="tblContractTypes" EntityType="Self.tblContractType" />
+          <EntitySet Name="tblDocuments" EntityType="Self.tblDocument" />
+          <EntitySet Name="tblDocumentTypes" EntityType="Self.tblDocumentType" />
+          <EntitySet Name="tblDrivers" EntityType="Self.tblDriver" />
+          <EntitySet Name="tblEmployementDetails" EntityType="Self.tblEmployementDetail" />
+          <EntitySet Name="tblEmployementStatus" EntityType="Self.tblEmployementStatu" />
+          <EntitySet Name="tblEquipments" EntityType="Self.tblEquipment" />
+          <EntitySet Name="tblIncludedServices" EntityType="Self.tblIncludedService" />
+          <EntitySet Name="tblInsurances" EntityType="Self.tblInsurance" />
+          <EntitySet Name="tblMaritalStatus" EntityType="Self.tblMaritalStatu" />
+          <EntitySet Name="tblMileages" EntityType="Self.tblMileage" />
+          <EntitySet Name="tblNationalities" EntityType="Self.tblNationality" />
+          <EntitySet Name="tblPaybackTimes" EntityType="Self.tblPaybackTime" />
+          <EntitySet Name="tblPropertyStatus" EntityType="Self.tblPropertyStatu" />
+          <EntitySet Name="tblQuotes" EntityType="Self.tblQuote" />
+          <EntitySet Name="tblRentDetails" EntityType="Self.tblRentDetail" />
+          <EntitySet Name="tblRoleManagements" EntityType="Self.tblRoleManagement" />
+          <EntitySet Name="tblStatus" EntityType="Self.tblStatu" />
+          <EntitySet Name="tblUsers" EntityType="Self.tblUser" />
+          <EntitySet Name="tblVehicleDetails" EntityType="Self.tblVehicleDetail" />
+          <AssociationSet Name="FK_tblBankDetail_tblQuote" Association="Self.FK_tblBankDetail_tblQuote">
+            <End Role="tblQuote" EntitySet="tblQuotes" />
+            <End Role="tblBankDetail" EntitySet="tblBankDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblBankDetail_tblUser" Association="Self.FK_tblBankDetail_tblUser">
+            <End Role="tblUser" EntitySet="tblUsers" />
+            <End Role="tblBankDetail" EntitySet="tblBankDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblEmployementDetail_tblContractType" Association="Self.FK_tblEmployementDetail_tblContractType">
+            <End Role="tblContractType" EntitySet="tblContractTypes" />
+            <End Role="tblEmployementDetail" EntitySet="tblEmployementDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblDocument_tblDocumentType" Association="Self.FK_tblDocument_tblDocumentType">
+            <End Role="tblDocumentType" EntitySet="tblDocumentTypes" />
+            <End Role="tblDocument" EntitySet="tblDocuments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblDocument_tblQuote" Association="Self.FK_tblDocument_tblQuote">
+            <End Role="tblQuote" EntitySet="tblQuotes" />
+            <End Role="tblDocument" EntitySet="tblDocuments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblDriver_tblUser" Association="Self.FK_tblDriver_tblUser">
+            <End Role="tblUser" EntitySet="tblUsers" />
+            <End Role="tblDriver" EntitySet="tblDrivers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblEmployementDetail_tblEmployeeStatus" Association="Self.FK_tblEmployementDetail_tblEmployeeStatus">
+            <End Role="tblEmployementStatus" EntitySet="tblEmployementStatus" />
+            <End Role="tblEmployementDetail" EntitySet="tblEmployementDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblEmployementDetail_tblUser" Association="Self.FK_tblEmployementDetail_tblUser">
+            <End Role="tblUser" EntitySet="tblUsers" />
+            <End Role="tblEmployementDetail" EntitySet="tblEmployementDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblVehicleDetails_tblEquipment" Association="Self.FK_tblVehicleDetails_tblEquipment">
+            <End Role="tblVehicleDetails" EntitySet="tblVehicleDetails" />
+            <End Role="tblEquipment" EntitySet="tblEquipments" />
+          </AssociationSet>
+          <AssociationSet Name="tblQuote_fk2" Association="Self.tblQuote_fk2">
+            <End Role="tblInsurance" EntitySet="tblInsurances" />
+            <End Role="tblQuote" EntitySet="tblQuotes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblUser_tblMaritalStatus" Association="Self.FK_tblUser_tblMaritalStatus">
+            <End Role="tblMaritalStatus" EntitySet="tblMaritalStatus" />
+            <End Role="tblUser" EntitySet="tblUsers" />
+          </AssociationSet>
+          <AssociationSet Name="tblQuote_fk3" Association="Self.tblQuote_fk3">
+            <End Role="tblMileage" EntitySet="tblMileages" />
+            <End Role="tblQuote" EntitySet="tblQuotes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblUser_tblNationality" Association="Self.FK_tblUser_tblNationality">
+            <End Role="tblNationality" EntitySet="tblNationalities" />
+            <End Role="tblUser" EntitySet="tblUsers" />
+          </AssociationSet>
+          <AssociationSet Name="tblQuote_fk5" Association="Self.tblQuote_fk5">
+            <End Role="tblPaybackTime" EntitySet="tblPaybackTimes" />
+            <End Role="tblQuote" EntitySet="tblQuotes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblRentDetail_tblPropertyStatus" Association="Self.FK_tblRentDetail_tblPropertyStatus">
+            <End Role="tblPropertyStatus" EntitySet="tblPropertyStatus" />
+            <End Role="tblRentDetail" EntitySet="tblRentDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblQuote_tblUser" Association="Self.FK_tblQuote_tblUser">
+            <End Role="tblUser" EntitySet="tblUsers" />
+            <End Role="tblQuote" EntitySet="tblQuotes" />
+          </AssociationSet>
+          <AssociationSet Name="tblQuote_fk1" Association="Self.tblQuote_fk1">
+            <End Role="tblVehicleDetails" EntitySet="tblVehicleDetails" />
+            <End Role="tblQuote" EntitySet="tblQuotes" />
+          </AssociationSet>
+          <AssociationSet Name="tblQuote_fk4" Association="Self.tblQuote_fk4">
+            <End Role="tblStatus" EntitySet="tblStatus" />
+            <End Role="tblQuote" EntitySet="tblQuotes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblRentDetail_tblUser" Association="Self.FK_tblRentDetail_tblUser">
+            <End Role="tblUser" EntitySet="tblUsers" />
+            <End Role="tblRentDetail" EntitySet="tblRentDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblUser_tblRoleManager" Association="Self.FK_tblUser_tblRoleManager">
+            <End Role="tblRoleManagement" EntitySet="tblRoleManagements" />
+            <End Role="tblUser" EntitySet="tblUsers" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DbQGSVLModelStoreContainer" CdmEntityContainer="DbQGSVLEntities1">
+          <EntitySetMapping Name="tblBankDetails">
+            <EntityTypeMapping TypeName="DbQGSVLModel.tblBankDetail">
+              <MappingFragment StoreEntitySet="tblBankDetail">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="QuoteId" ColumnName="QuoteId" />
+                <ScalarProperty Name="IBAN" ColumnName="IBAN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblContractTypes">
+            <EntityTypeMapping TypeName="DbQGSVLModel.tblContractType">
+              <MappingFragment StoreEntitySet="tblContractType">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblDocuments">
+            <EntityTypeMapping TypeName="DbQGSVLModel.tblDocument">
+              <MappingFragment StoreEntitySet="tblDocument">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="DocumentType" ColumnName="DocumentType" />
+                <ScalarProperty Name="DocumentPath" ColumnName="DocumentPath" />
+                <ScalarProperty Name="QuoteId" ColumnName="QuoteId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblDocumentTypes">
+            <EntityTypeMapping TypeName="DbQGSVLModel.tblDocumentType">
+              <MappingFragment StoreEntitySet="tblDocumentType">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblDrivers">
+            <EntityTypeMapping TypeName="DbQGSVLModel.tblDriver">
+              <MappingFragment StoreEntitySet="tblDriver">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Prefix" ColumnName="Prefix" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblEmployementDetails">
+            <EntityTypeMapping TypeName="DbQGSVLModel.tblEmployementDetail">
+              <MappingFragment StoreEntitySet="tblEmployementDetail">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="EmployementStatus" ColumnName="EmployementStatus" />
+                <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
+                <ScalarProperty Name="ContractType" ColumnName="ContractType" />
+                <ScalarProperty Name="Address1" ColumnName="Address1" />
+                <ScalarProperty Name="Address2" ColumnName="Address2" />
+                <ScalarProperty Name="PostCode" ColumnName="PostCode" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblEmployementStatus">
+            <EntityTypeMapping TypeName="DbQGSVLModel.tblEmployementStatu">
+              <MappingFragment StoreEntitySet="tblEmployementStatus">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblEquipments">
+            <EntityTypeMapping TypeName="DbQGSVLModel.tblEquipment">
+              <MappingFragment StoreEntitySet="tblEquipment">
+                <ScalarProperty Name="EqId" ColumnName="EqId" />
+                <ScalarProperty Name="CarId" ColumnName="CarId" />
+                <ScalarProperty Name="EquipmentType" ColumnName="EquipmentType" />
+                <ScalarProperty Name="Features" ColumnName="Features" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblIncludedServices">
+            <EntityTypeMapping TypeName="DbQGSVLModel.tblIncludedService">
+              <MappingFragment StoreEntitySet="tblIncludedServices">
+                <ScalarProperty Name="IsId" ColumnName="IsId" />
+                <ScalarProperty Name="ServiceName" ColumnName="ServiceName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblInsurances">
+            <EntityTypeMapping TypeName="DbQGSVLModel.tblInsurance">
+              <MappingFragment StoreEntitySet="tblInsurance">
+                <ScalarProperty Name="InsuranceId" ColumnName="InsuranceId" />
+                <ScalarProperty Name="Term_Month_" ColumnName="Term(Month)" />
+                <ScalarProperty Name="InsurancePrice" ColumnName="InsurancePrice" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblMaritalStatus">
+            <EntityTypeMapping TypeName="DbQGSVLModel.tblMaritalStatu">
+              <MappingFragment StoreEntitySet="tblMaritalStatus">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblMileages">
+            <EntityTypeMapping TypeName="DbQGSVLModel.tblMileage">
+              <MappingFragment StoreEntitySet="tblMileage">
+                <ScalarProperty Name="MileageId" ColumnName="MileageId" />
+                <ScalarProperty Name="Mileage_K_" ColumnName="Mileage(K)" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblNationalities">
+            <EntityTypeMapping TypeName="DbQGSVLModel.tblNationality">
+              <MappingFragment StoreEntitySet="tblNationality">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nationality" ColumnName="Nationality" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblPaybackTimes">
+            <EntityTypeMapping TypeName="DbQGSVLModel.tblPaybackTime">
+              <MappingFragment StoreEntitySet="tblPaybackTime">
+                <ScalarProperty Name="PaybackTimeId" ColumnName="PaybackTimeId" />
+                <ScalarProperty Name="PaybackTime_Month_" ColumnName="PaybackTime(Month)" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblPropertyStatus">
+            <EntityTypeMapping TypeName="DbQGSVLModel.tblPropertyStatu">
+              <MappingFragment StoreEntitySet="tblPropertyStatus">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblQuotes">
+            <EntityTypeMapping TypeName="DbQGSVLModel.tblQuote">
+              <MappingFragment StoreEntitySet="tblQuote">
+                <ScalarProperty Name="QuoteId" ColumnName="QuoteId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="CarId" ColumnName="CarId" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="InsuranceId" ColumnName="InsuranceId" />
+                <ScalarProperty Name="MileageId" ColumnName="MileageId" />
+                <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+                <ScalarProperty Name="PaybackTimeId" ColumnName="PaybackTimeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblRentDetails">
+            <EntityTypeMapping TypeName="DbQGSVLModel.tblRentDetail">
+              <MappingFragment StoreEntitySet="tblRentDetail">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="NetMonthyIncome" ColumnName="NetMonthyIncome" />
+                <ScalarProperty Name="RentalIncome" ColumnName="RentalIncome" />
+                <ScalarProperty Name="PropertyStatus" ColumnName="PropertyStatus" />
+                <ScalarProperty Name="CreditCost" ColumnName="CreditCost" />
+                <ScalarProperty Name="MonthyRent" ColumnName="MonthyRent" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblRoleManagements">
+            <EntityTypeMapping TypeName="DbQGSVLModel.tblRoleManagement">
+              <MappingFragment StoreEntitySet="tblRoleManagement">
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblStatus">
+            <EntityTypeMapping TypeName="DbQGSVLModel.tblStatu">
+              <MappingFragment StoreEntitySet="tblStatus">
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblUsers">
+            <EntityTypeMapping TypeName="DbQGSVLModel.tblUser">
+              <MappingFragment StoreEntitySet="tblUser">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="UserEmail" ColumnName="UserEmail" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Prefix" ColumnName="Prefix" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Contact" ColumnName="Contact" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="isMainDriver" ColumnName="isMainDriver" />
+                <ScalarProperty Name="MaritalStatus" ColumnName="MaritalStatus" />
+                <ScalarProperty Name="RegistrationNumber" ColumnName="RegistrationNumber" />
+                <ScalarProperty Name="Address1" ColumnName="Address1" />
+                <ScalarProperty Name="Address2" ColumnName="Address2" />
+                <ScalarProperty Name="Address3" ColumnName="Address3" />
+                <ScalarProperty Name="PostCode" ColumnName="PostCode" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Nationality" ColumnName="Nationality" />
+                <ScalarProperty Name="LivedSince" ColumnName="LivedSince" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblVehicleDetails">
+            <EntityTypeMapping TypeName="DbQGSVLModel.tblVehicleDetail">
+              <MappingFragment StoreEntitySet="tblVehicleDetails">
+                <ScalarProperty Name="CarId" ColumnName="CarId" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Brand" ColumnName="Brand" />
+                <ScalarProperty Name="ModelName" ColumnName="ModelName" />
+                <ScalarProperty Name="HorsePower_HP_" ColumnName="HorsePower(HP)" />
+                <ScalarProperty Name="Consumption_L_100Km_" ColumnName="Consumption(L/100Km)" />
+                <ScalarProperty Name="Co2Emission_g_Km_" ColumnName="Co2Emission(g/Km)" />
+                <ScalarProperty Name="FuelType" ColumnName="FuelType" />
+                <ScalarProperty Name="Seating" ColumnName="Seating" />
+                <ScalarProperty Name="Abs" ColumnName="Abs" />
+                <ScalarProperty Name="Airbag" ColumnName="Airbag" />
+                <ScalarProperty Name="Transmission" ColumnName="Transmission" />
+                <ScalarProperty Name="Colour" ColumnName="Colour" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

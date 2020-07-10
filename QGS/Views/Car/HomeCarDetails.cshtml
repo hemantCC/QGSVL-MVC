@@ -1,0 +1,538 @@
+﻿@model  IEnumerable<QGS.Entities.BusinessEntities.CarVM>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+
+    <title>LEASE</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="~/Content/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+
+
+    <!-- <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="~/Content/assets/css/fontawesome.css">
+    <link rel="stylesheet" href="~/Content/assets/css/templatemo-sixteen.css">
+    <link rel="stylesheet" href="~/Content/assets/css/owl.css">
+
+
+
+
+
+
+    <!--------------------------- Head Section------------------------------->
+    <!-- Custom fonts for this template -->
+    <link href="~/Content/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Custom styles for this template -->
+    <link href="~/Content/agency.min.css" rel="stylesheet">
+    <!-------------------------  Section Over-------------------------------->
+    <!------------------------Links For COUNTER  ------------------------------->
+
+    <link rel="stylesheet" href="~/Content/assets/css/style.css">
+    <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.js"></script>
+    <!-----------------------  OVER  ------------------------------------------>
+
+</head>
+
+<body>
+
+    <!-- ***** Preloader Start ***** -->
+    <div id="preloader">
+        <div class="jumper">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+    <!-- ***** Preloader End ***** -->
+    <!--------------------------------------------------- Header ----------------------------------------------------->
+    <header class="">
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                @*<a class="navbar-brand" href="/Car/HomeCarDetails"><h2>QGS<em>VL</em></h2></a>*@
+                <a class="navbar-brand font-bold" href="/Home/Index"><h2>QGS<em style="font-style:normal;color:red">VL</em></h2></a>
+
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/Car/HomeCarDetails">
+                                Home
+                                <!-- <span class="sr-only">(current)</span> -->
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#section1">Private Lease</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Home/Contact">Contact Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Car/FAQs">FAQ</a>
+                        </li>
+                        @if (User.Identity.Name == "")
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Account/Login">Sign In / Up</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Account/Logout">LogOut</a>
+                            </li>
+                        }
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!----------------------------------------------------- Header Ends ------------------------------------------------------------------>
+    <!-- Page Content -->
+    <!---------------------------------------------- Banner Starts Here -------------------------------------------------------------->
+    <div class="banner header-text">
+        <div class="owl-banner owl-carousel">
+            <div class="banner-item-01">
+                <div class="text-content" style="top:160px;">
+                    <form method="post">
+                        <div class="display-4 text-center" style="color:aliceblue;">Search Vehicle</div>
+                        <div class="container-fluid">
+                            <div class="row d-flex justify-content-between mt-4 position-fixed " style="width:100%;">
+                                <div class="col-2 p-0">
+
+                                    <button type="button" href="#homeSubmenu" id="Brand" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle form-control" onchange="change()">Brand</button>
+                                    <ul class="collapse list-unstyled " id="homeSubmenu" style="color:aliceblue;">
+                                        <li>
+                                            <div id="brandList" class="d-flex flex-column"></div>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                                <div class="col-2 p-0">
+                                    <button type="button" href="#pageSubmenu2" id="sendbtn" data-toggle="collapse" aria-expanded="false"
+                                            class="dropdown-toggle form-control">
+                                        Model
+                                    </button>
+                                    <ul class="collapse list-unstyled" id="pageSubmenu2" style="color:aliceblue;">
+                                        <li>
+                                            <div id="typeList" class="d-flex flex-column"></div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-2 p-0">
+
+                                    <button type="button" href="#pageSubmenu" data-toggle="collapse" aria-expanded="false"
+                                            class="dropdown-toggle form-control">
+                                        FuelType
+                                    </button>
+                                    <ul class="collapse list-unstyled" id="pageSubmenu" style="color:aliceblue;">
+                                        <li>
+                                            <div id="fuelList" class="d-flex flex-column"></div>
+                                        </li>
+                                    </ul>
+
+                                </div>
+                                <div class="col-2 p-0">
+                                    <button type="button" href="#pageSubmenu1" data-toggle="collapse" aria-expanded="false"
+                                            class="dropdown-toggle form-control">
+                                        Gear
+                                    </button>
+                                    <ul class="collapse list-unstyled" id="pageSubmenu1" style="color:aliceblue;">
+                                        <li>
+                                            <div id="transmissionList" class="d-flex flex-column"></div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-2 p-0">
+                                    <button type="button" href="#pageSubmenu3" data-toggle="collapse" aria-expanded="false"
+                                            class="dropdown-toggle form-control">
+                                        Range
+                                    </button>
+                                    <ul class="collapse list-unstyled" id="pageSubmenu3" style="color:aliceblue;">
+                                        <li>
+                                            <div id="rangeList" class="d-flex flex-column"></div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary mt-2" style="position:relative;top:180px;" type="submit">Search</button>
+                    </form>
+
+
+
+                    <script type="text/javascript">
+            var selectedCarList = [];
+            var selectedFuelList = [];
+            var selectedTransmissionList = [];
+            var selectedTypesList = [];
+            var selectedRange = [];
+
+        $(document).ready(function () {
+            localStorage.removeItem('checkSelectedData');
+            var cars = @Html.Raw(Json.Encode(Model));
+            console.log(cars);
+
+            var brands = [];
+            var fuelTypes = [];
+            var transmissions = [];
+            var types = [];
+
+            var range = {
+                0: {
+                    min: 0,
+                    max: 349
+                },
+                1: {
+                    min: 350,
+                    max: 599
+                },
+                2: {
+                    min: 600,
+                    max: 849
+                },
+                3: {
+                    min: 850,
+                    max: 1087
+                },
+                4: {
+                    min: 1088,
+                    max: 2000
+                }
+            }
+            $.each(cars, function (index, car) {
+
+
+                if (!brands.includes(car.Brand)) {
+                    brands.push(car.Brand);
+                }
+                if (!fuelTypes.includes(car.FuelType)) {
+                    fuelTypes.push(car.FuelType);
+                }
+                if (!transmissions.includes(car.Transmission)) {
+                    transmissions.push(car.Transmission);
+                }
+                if (!types.includes(car.Type)) {
+                    types.push(car.Type);
+                }
+
+            });
+
+            $.each(brands, function (index, brand) {
+                str = '<div class="d-flex justify-content-start ml-5 mt-1"><input type="checkbox" class="mr-2 mt-1" name="brand ' + brand + '" value="' + brand + '" id="check"><span>' + brand + '</span><br></div>';
+                $('#brandList').append(str);
+            });
+
+            $.each(fuelTypes, function (index, fuelType) {
+                str = '<div class="d-flex justify-content-start ml-5 mt-1"><input type="checkbox" class="mr-2 mt-1" name="fuelType ' + fuelType + '" value="' + fuelType + '"><span>' + fuelType + '</span><br></div>';
+                $('#fuelList').append(str);
+            });
+            $.each(transmissions, function (index, transmission) {
+                str = '<div class="d-flex justify-content-start ml-5 mt-1"><input type="checkbox" class="mr-2 mt-1" name="transmission ' + transmission + '" value="' + transmission + '"><span>' + transmission + '</span><br></div>';
+                $('#transmissionList').append(str);
+            });
+
+            $.each(types, function (index, type) {
+                str = '<div class="d-flex justify-content-start ml-5 mt-1"><input type="checkbox" class="mr-2 mt-1" name="type ' + type + '" value="' + type + '"><span>' + type + '</span><br></div>';
+                $('#typeList').append(str);
+            });
+
+            $.each(range, function (index, obj) {
+                str = '<div class="d-flex justify-content-start ml-5 mt-1"><input type="checkbox" class="mr-2 mt-1" name="range ' + index + '"value="' + index + '"><span>' + obj.min + '-' + obj.max + '</span><br></div>';
+                $('#rangeList').append(str);
+            });
+        });
+                    </script>
+
+                    @* <a class="btn btn-primary btn-l text-uppercase js-scroll-trigger" style="background-color: #E84342;" href="#services">Tell Me More</a>*@
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+    <!-------------------------------------------- Banner Ends Here ------------------------------------------------------------------>
+    <!------------------------------------------ Services Section --------------------------------------------------------------------->
+    <section class="page-section" id="section1">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading text-uppercase" style="text-align: center;">What is Private Lease</h2>
+                    <h3 class="section-subheading text-muted">Pleasing people over the world</h3>
+                </div>
+            </div>
+            <div class="row text-center">
+                <div class="col-md-6">
+                    <span class="fa-stack fa-4x">
+                        <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                        <i class="fa fa-commenting fa-stack-1x fa-inverse"></i>
+                    </span>
+                    <h4 class="service-heading">Private Lease</h4>
+
+                    <p class="text-muted" align="justify">Registration and long lines at the SNCT, researching and buying comprehensive auto insurance, buying the right tyres, finding a good road-side assistance policy, mechanical breakdowns, additional unforeseen repairs, accidents and insurance claims, car resale charges...</p></br>
+                </div>
+                <div class="col-md-6">
+                    <img src="/img/logos/private.png" alt="Sample Image" style="height:80%; width:60%;" />
+                </div>
+            </div>
+            <br />
+            <div class="row text-center">
+                <div class="col-md-6">
+                    <span class="fa-stack fa-4x">
+                        <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                        <i class="fa fa-gears fa-stack-1x fa-inverse"></i>
+                    </span>
+                    <h4 class="service-heading">LET US WORRY ABOUT ALL THAT</h4>
+
+                    <p class="text-muted" align="justify">With Private Lease, you no longer have to worry about all the little problems that come with owning your own car, because you have an all-inclusive policy covering auto and administrative services alike</p><br>
+                </div>
+                <div class="col-md-6">
+                    <img src="/img/logos/worry.png" alt="" style="height:80%; width:60%;">
+                </div><br />
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-12">
+
+                    <h4 class="service-heading text-center">HOW DOES IT WORK</h4>
+
+                    <p class="text-muted" align="justify">Select your vehicle, set your mileage and term of lease. Once your contract is signed and approved, your car is ordered, you pick it up when its ready, you take to the road care-free and, when your lease is up, you return the car – all hassle-free.</p></br>
+                </div>
+                <div class="container-fluid">
+                    <div class="row text-center">
+                        <div class="col-md-2">
+                            <br /> <img src="/img/logos/step1.png"><br />
+                        </div>
+                        <div class="col-md-4 pt-5">
+                            <br /><span>Select your vehicle</span><br />
+                        </div>
+                        <div class="col-md-2">
+                            <br /><img src="/img/logos/step4.png"><br />
+                        </div>
+                        <div class="col-md-4 pt-5">
+                            <br /><span>Pick it up when it's ready</span><br />
+                        </div>
+                    </div>
+                    <div class="row text-center">
+                        <div class="col-md-2">
+                            <br /><img src="/img/logos/step2.png"><br />
+                        </div>
+                        <div class="col-md-4 pt-5">
+                            <br /><span>Set your mileage and term of lease</span><br />
+                        </div>
+                        <div class="col-md-2">
+                            <br /><img src="/img/logos/step5.png"><br />
+                        </div>
+                        <div class="col-md-4 pt-5">
+                            <br /><span>Renew your lease, as needed</span><br />
+                        </div>
+                    </div>
+                    <div class="row text-center">
+                        <div class="col-md-2">
+                            <br /><img src="/img/logos/step3.png"><br />
+                        </div>
+                        <div class="col-md-4 pt-5">
+                            <br /><span>Once your contract is signed and approved, your car is ordered</span><br />
+                        </div>
+                        <div class="col-md-2">
+                            <br /><img src="/img/logos/step6.png"><br />
+                        </div>
+                        <div class="col-md-4 pt-5">
+                            <br /><span>Simply return the car when your lease is up</span><br />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <br />
+    <!------------------------------------------------- Section Over ------------------------------------------------------------------>
+    <!------------------------------------------------- Section Start ------------------------------------------------------------------>
+
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-md-4">
+                <img src="/img/logos/car.png" style="height:90%; width:90%;">
+            </div>
+            <div class="col-md-8">
+                <div class="row" style="justify-content:center;">
+                    <h4 class="service-heading">ALL-INCLUSIVE PRIVATE LEASE SOLUTION</h4>
+                </div>
+                <div class="row text-center">
+                    <div class="col-md-6">
+                        <br /><div class="row pl-5 ml-5"><i class="fa fa-plus" style="color:red;" aria-hidden="true"></i><span class="pl-3"><b>Roadside assistance</b></span></div><br />
+                        <div class="row pl-5 ml-5"><i class="fa fa-plus" style="color:red;" aria-hidden="true"></i><span class="pl-3"><b>All-weather tyres</b></span></div><br />
+                        <div class="row pl-5 ml-5"><i class="fa fa-plus" style="color:red;" aria-hidden="true"></i><span class="pl-3"><b>Replacement vehicle</b></span></div><br />
+                        <div class="row pl-5 ml-5"><i class="fa fa-plus" style="color:red;" aria-hidden="true"></i><span class="pl-3"><b>Adminisstrative services</b></span></div>
+                    </div>
+                    <div class="col-md-6">
+                        <br /><div class="row pl-5 ml-5"><i class="fa fa-plus" style="color:red;" aria-hidden="true"></i><span class="pl-3"><b>Taxes</b></span></div><br />
+                        <div class="row pl-5 ml-5"><i class="fa fa-plus" style="color:red;" aria-hidden="true"></i><span class="pl-3"><b>Maintenance</b></span></div><br />
+                        <div class="row pl-5 ml-5"><i class="fa fa-plus" style="color:red;" aria-hidden="true"></i><span class="pl-3"><b>Insurance</b></span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+    <!------------------------------------------------- Section Over ------------------------------------------------------------------>
+    <!------------------------------------------------- Section Start ------------------------------------------------------------------>
+    <br />
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h4 class="service-heading">
+                    LEASING SERVICES GUARANTEED
+                    BY PRIVATE LEASE
+                </h4>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <ul>
+                    <li><i class="fa fa-plus" style="color:red;" aria-hidden="true"></i><span class="pl-3"><b>Taxes:</b> registration, registration fees and road tax.</span></li>
+                    <br />
+                    <li><i class="fa fa-plus" style="color:red;" aria-hidden="true"></i><span class="pl-3"><b>Maintenance:</b> mechanical repairs and maintenance included over the entire term of the lease.</span></li>
+                    <br />
+                    <li><i class="fa fa-plus" style="color:red;" aria-hidden="true"></i><span class="pl-3"><b>Insurance:</b> comprehensive coverage (civil liability, damages, legal and driver protection.</span></li>
+                    <br />
+                    <li><i class="fa fa-plus" style="color:red;" aria-hidden="true"></i><span class="pl-3"><b>Tyres:</b> all-weather tyres (based on wear and tear).</span></li>
+                    <br />
+                    <li><i class="fa fa-plus" style="color:red;" aria-hidden="true"></i><span class="pl-3"><b>Roadside assistance:</b> 24/7.</span></li>
+                    <br />
+                    <li><i class="fa fa-plus" style="color:red;" aria-hidden="true"></i><span class="pl-3"><b>First-class replacement vehicle.</b></span></li>
+                    <br />
+                    <li><i class="fa fa-plus" style="color:red;" aria-hidden="true"></i><span class="pl-3"><b>One contact centre:</b> to answer all your questions and manage the services included in your contract.</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <br />
+
+
+    <!------------------------------------------------- Section Over ------------------------------------------------------------------>
+    <!-------------------------------------   Footer ------------------------------------------->
+    <br />
+
+    <footer class="footer" style="background-color:black @*#2C3335;*@">
+        <div class="container" style="height: auto;">
+            <div class="row justify-content-between">
+                <div class="col-md-3 pt-3">
+                    <ul class="list-inline quicklinks">
+                        <li class="list-inline-item">
+                            <a href="#" style="color: white;">&copy;&nbsp;Quote Generation System</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-6 pt-3">
+                    <ul class="list-inline quicklinks" style="color: white;">
+                        <li class="list-inline-item">
+                            |&nbsp;<a href="#" style="color: white;">Contact</a>
+                        </li>
+                        <li class="list-inline-item">
+                            |&nbsp;<a href="~/Pdfs/PrivatePolicy.pdf" style="color: white;">Private Policy</a>
+                        </li>
+                        <li class="list-inline-item">
+                            |&nbsp;<a href="~/Pdfs/TermsOfUse.pdf" style="color: white;">Terms of Use</a>
+                        </li>
+                        <li class="list-inline-item">
+                            |&nbsp;<a href="~/Pdfs/CookiePolicy.pdf" style="color: white;">Cookie Policy</a>&nbsp;|
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!----------------------------------------------- Footer Over --------------------------------------------->
+    <!-- Bootstrap core JavaScript -->
+    <script src="~/Content/vendor/jquery/jquery.min.js"></script>
+    <script src="~/Content/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+
+    <!-- Additional Scripts -->
+    <script src="~/Content/assets/js/custom.js"></script>
+    <script src="~/Content/assets/js/owl.js"></script>
+    <script src="~/Content/assets/js/slick.js"></script>
+    <script src="~/Content/assets/js/isotope.js"></script>
+    <script src="~/Content/assets/js/accordions.js"></script>
+
+
+    <script language="text/Javascript">
+
+
+        //$(document).ready(function () {
+        //    // Add scrollspy to <body>
+        //    $('body').scrollspy({ target: ".navbar", offset: 50 });
+
+        //    // Add smooth scrolling on all links inside the navbar
+        //    $("#myNavbar a").on('click', function (event) {
+        //        // Make sure this.hash has a value before overriding default behavior
+        //        if (this.hash !== "") {
+        //            // Prevent default anchor click behavior
+        //            event.preventDefault();
+
+        //            // Store hash
+        //            var hash = this.hash;
+
+        //            // Using jQuery's animate() method to add smooth page scroll
+        //            // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+        //            $('html, body').animate({
+        //                scrollTop: $(hash).offset().top
+        //            }, 800, function () {
+
+        //                // Add hash (#) to URL when done scrolling (default click behavior)
+        //                window.location.hash = hash;
+        //            });
+        //        }  // End if
+        //    });
+        //});
+
+
+        cleared[0] = cleared[1] = cleared[2] = 0; //set a cleared flag for each field
+        function clearField(t) {                   //declaring the array outside of the
+            if (!cleared[t.id]) {                      // function makes it static and global
+                cleared[t.id] = 1;  // you could use true and false, but that's more typing
+                t.value = '';         // with more chance of typos
+                t.style.color = '#fff';
+            }
+        }
+    </script>
+
+
+
+</body>
+
+</html>
+
+
+
+
+<!------------------------------                                            --------------------------------->
+<!------------------------------    Template Designed by: Vrundan Patel      --------------------------------->
+<!------------------------------                                            --------------------------------->

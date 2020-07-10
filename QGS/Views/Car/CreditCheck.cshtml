@@ -1,0 +1,882 @@
+﻿@model QGS.Entities.BusinessEntities.PersonalDetailsVM
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="~/Content/css/car/PersonalDetails.css" />
+
+    <meta name="viewport" content="width=device-width" />
+    <title>CreditCheck</title>
+    <style>
+        li a {
+            color: white
+        }
+
+            li a:hover {
+                color: white;
+                text-decoration: none
+            }
+
+        ul li:hover {
+            background-color: red;
+        }
+
+        card:hover {
+            color: black;
+            background-color: #e2e6ea;
+            border-color: #dae0e5;
+        }
+
+        b {
+            color: black;
+        }
+
+        i {
+            color: black;
+        }
+
+        ul#stepForm, ul#stepForm li {
+            margin: 0;
+            padding: 0;
+        }
+
+            ul#stepForm li {
+                list-style: none outside none;
+            }
+
+        label {
+            margin-top: 10px;
+        }
+
+        .help-inline-error {
+            color: red;
+        }
+
+        #link-copied1 {
+            position: fixed;
+            top: 100px;
+            background-color: green;
+            padding: 10px;
+            font-size: 20px;
+            margin-left: 50%;
+            width: 200px;
+            color: white
+        }
+
+        #link-copied2 {
+            position: fixed;
+            top: 100px;
+            background-color: red;
+            padding: 20px;
+            font-size: 20px;
+            margin-left: 50%;
+            width: 300px;
+        }
+
+        #link-copied3 {
+            position: fixed;
+            top: 100px;
+            background-color: green;
+            padding: 10px;
+            font-size: 20px;
+            margin-left: 50%;
+            width: 200px;
+            color: white
+        }
+
+        #link-copied4 {
+            position: fixed;
+            top: 100px;
+            background-color: red;
+            padding: 20px;
+            font-size: 20px;
+            margin-left: 50%;
+            width: 300px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color:black; height:70px;">
+        <div class="container">
+
+            <a class="navbar-brand font-bold" href="/Car/HomeCarDetails"><h2>QGS<em style="font-style:normal;color:red">VL</em></h2></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-4" aria-controls="navbarSupportedContent-4" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent-4">
+                <ul class="navbar-nav ml-auto">
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Car/HomeCarDetails">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="http://localhost:50093/car/MyQuote?usr_email=@User.Identity.Name">My Quotes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Car/HomeCarDetails/#section1">What is Private Lease</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Car/FAQs">FAQ</a>
+                    </li>
+                    @{
+                        if (User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Account/Logout"><i class="fas fa-sign-out-alt"></i>Log Out</a>
+                            </li>
+                        }
+                    }
+                    @{
+                        if (!User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Account/Login?returnUrl=1"><i class="fas fa-sign-out-alt"></i>Login</a>
+                            </li>
+                        }
+                    }
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+
+    <!--Form-->
+    <br /><br /><br /><br /><br /><br />
+    <div class="container" style="padding-left: 0px; padding-right: 15px;width:800px">
+
+        <div class="card">
+            <div class="card-header">
+                <h3 class="panel-title">Complete this form in quick 3 steps!</h3>
+            </div>
+            <div class="card-body">
+                <form name="basicform" id="basicform" method="post" enctype="multipart/form-data">
+
+                    <div id="sf1" class="frm">
+                        <fieldset>
+
+                            <div class="form-group">
+                                <h5>
+                                    <b>Personal Details</b>
+                                </h5>
+                                <p>
+                                    About you<br /><br />
+                                    Your contact information will be used to discuss your application and delivery<br />
+                                    arrangements. Your information may be passed to a third party purely for the purposes<br />
+                                    of arranging delivery of your car.
+                                </p>
+                                <label class="col-lg-2 control-label" for="Civility">Civility: </label>
+                                <div class="col-lg-6">
+                                    <input type="text" id="Civility" name="Civility" class="form-control" value="@Model.Prefix" readonly>
+                                </div>
+
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label" for="FirstName">First Name: </label>
+                                <div class="col-lg-6">
+                                    <input type="text" placeholder="Your Name" id="FirstName" name="FirstName" class="form-control" value="@Model.FirstName" readonly>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label" for="LastName">Last Name: </label>
+                                <div class="col-lg-6">
+                                    <input type="text" placeholder="Your Name" id="LastName" name="LastName" class="form-control" value="@Model.LastName" readonly>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label" for="dob">
+                                    Date of Birth:
+                                </label>
+                                <div class="col-lg-6">
+                                    <input type="date" id="dob" name="dob" class="form-control" autocomplete="off">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-4 control-label" for="MaritalStatusVal">
+                                    Marital Status<font color="red">*</font> :
+                                </label>
+                                <div class="col-lg-6">
+                                    <select id="MaritalStatusVal" name="MaritalStatusVal" class="form-control" autocomplete="off">
+                                        <option selected disabled value=''>Please Select Marital Status</option>
+                                        @foreach (var item in Model.MaritalStatus)
+                                        {
+                                            <option class="text-center" value="@item.Id">@item.MaritalStatus</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-4 control-label" for="NationalityVal">
+                                    Nationality<font color="red">*</font> :
+                                </label>
+                                <div class="col-lg-6">
+                                    <select id="NationalityVal" name="NationalityVal" class="form-control" autocomplete="off">
+                                        <option selected disabled value=''>Please Select Nationality</option>
+                                        @foreach (var item in Model.Nationality)
+                                        {
+                                            <option class="text-center" value="@item.Id">@item.Nationality</option>
+                                        }
+                                    </select>
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-4 control-label" for="RegistrationNo">Registration Number (CNS): </label>
+                                <div class="col-lg-6">
+                                    <input type="number" id="RegistrationNo" name="RegistrationNo" class="form-control" autocomplete="off">
+                                </div>
+                            </div>
+                            <div>
+                                <h5>
+                                    Contact Details
+                                </h5>
+                                <p>
+                                    Your contact information will be used to discuss your application and delivery<br />
+                                    arrangements. Your information may be passed to a third party purely for the purposes<br />
+                                    of arranging delivery of your car.
+                                </p>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-4 control-label" for="UserEmail">E-mail: </label>
+                                <div class="col-lg-6">
+                                    <input type="email" id="UserEmail" name="UserEmail" class="form-control" autocomplete="off">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-4 control-label" for="Contact">Mobile phone number: </label>
+                                <div class="col-lg-6">
+                                    <input type="text" id="Contact" name="Contact" class="form-control" value="@Model.Contact" readonly>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-4 control-label" for="Address1">Address Line 1: </label>
+                                <div class="col-lg-6">
+                                    <input type="text" id="Address1" name="Address1" class="form-control" autocomplete="off">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-4 control-label" for="Address2">Address Line 2: </label>
+                                <div class="col-lg-6">
+                                    <input type="text" id="Address2" name="Address2" class="form-control" autocomplete="off">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-4 control-label" for="Address3">Address Line 3: </label>
+                                <div class="col-lg-6">
+                                    <input type="text" id="Address3" name="Address3" class="form-control" autocomplete="off">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-4 control-label" for="City">City: </label>
+                                <div class="col-lg-6">
+                                    <input type="text" id="City" name="City" class="form-control" autocomplete="off">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-4 control-label" for="PostCode">Postcode: </label>
+                                <div class="col-lg-6">
+                                    <input type="number" id="PostCode" name="PostCode" class="form-control" autocomplete="off">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-4 control-label" for="liveddate">You lived here since: </label>
+                                <div class="col-lg-6">
+                                    <input type="date" id="liveddate" name="liveddate" class="form-control" autocomplete="off">
+                                </div>
+                            </div>
+
+                            <div class="clearfix" style="height: 10px;clear: both;"></div>
+
+
+                            <div class="form-group">
+                                <div class="col-lg-10 col-lg-offset-2">
+                                    <button id="savebtn1" class="btn btn-primary" type="button">Save</button>
+                                    <button class="btn btn-primary open1" type="button">Next <span class="fa fa-arrow-right"></span></button>
+                                </div>
+                                <div id="link-copied1" class="d-none">
+                                    Your Data Has Been Successfully Saved.
+                                </div>
+                                <div id="link-copied2" class="d-none">
+                                    Please Fill in a valid value for all required Fileds
+                                </div>
+
+                            </div>
+
+                        </fieldset>
+                    </div>
+
+                    <div id="sf2" class="frm" style="display: none;">
+                        <fieldset>
+                            <legend>Step 2 of 3</legend>
+                            <div class="form-group">
+                                <h5>
+                                    <b>
+                                        Address and employment
+                                    </b>
+                                </h5>
+                                <p>
+                                    What is your situation ?
+                                </p>
+                                <div>
+                                    <label class="col-lg-4 control-label" for="EmployeeName">Employer name: </label>
+                                    <div class="col-lg-6">
+                                        <input type="text" id="EmployeeName" name="EmployeeName" class="form-control" autocomplete="off">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-4 control-label" for="EmployementStatusVal">
+                                    Employment status :<font color="red">*</font> :
+                                </label>
+                                <div class="col-lg-6">
+                                    <select id="EmployementStatusVal" name="EmployementStatusVal" class="form-control" autocomplete="off">
+                                        <option selected disabled value=''>Please Select Employement Status</option>
+                                        @foreach (var item in Model.EmployementStatus)
+                                        {
+                                            <option class="text-center" value="@item.Id">@item.EmpStatus</option>
+
+                                        }
+                                    </select>
+
+                                </div>
+
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-4 control-label" for="ContractTypesVal">
+                                    Contract Type :<font color="red">*</font> :
+                                </label>
+                                <div class="col-lg-6">
+                                    <select id="ContractTypesVal" name="ContractTypesVal" class="form-control" autocomplete="off">
+                                        <option selected disabled value=''>Please Select Contract Type</option>
+                                        @foreach (var item in Model.contractTypes)
+                                        {
+                                            <option class="text-center" value="@item.Id">@item.ContractType</option>
+                                        }
+                                    </select>
+
+                                </div>
+
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-4 control-label" for="startdate">Start Date: </label>
+                                <div class="col-lg-6">
+                                    <input type="date" id="startdate" name="startdate" class="form-control" autocomplete="off">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-4 control-label" for="empAddress1">Address Line 1: </label>
+                                <div class="col-lg-6">
+                                    <input type="text" id="empAddress1" name="empAddress1" class="form-control" autocomplete="off">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-4 control-label" for="empAddress2">Address Line 2: </label>
+                                <div class="col-lg-6">
+                                    <input type="text" id="empAddress2" name="empAddress2" class="form-control" autocomplete="off">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-4 control-label" for="empCountry">Country: </label>
+                                <div class="col-lg-6">
+                                    <select id="empCountry" name="empCountry" class="form-control" autocomplete="off">
+                                        <option selected disabled value=''>Please Select Country</option>
+                                        @foreach (var item in Model.Nationality)
+                                        {
+                                            <option class="text-center" value="@item.Id">@item.Nationality</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-4 control-label" for="empCity">City: </label>
+                                <div class="col-lg-6">
+                                    <input type="text" id="empCity" name="empCity" class="form-control" autocomplete="off">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-4 control-label" for="empPostCode">Postcode: </label>
+                                <div class="col-lg-6">
+                                    <input type="number" id="empPostCode" name="empPostCode" class="form-control" autocomplete="off">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <h5>Revenues and Charges</h5>
+                                <b>
+                                    Net monthly income (last month's net salary, without holiday pay, year-end<br />
+                                    bonus and/or other extras) or retirement pension
+                                </b>
+                                <br />
+                                <label class="col-lg-4 control-label" for="NetMonthlyIncome"></label>
+                                <div class="col-lg-6">
+                                    <input type="number" id="NetMonthlyIncome" name="NetMonthlyIncome" class="form-control" autocomplete="off">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-4 control-label" for="RentalIncome">Rental Income: </label>
+                                <div class="col-lg-6">
+                                    <input type="number" id="RentalIncome" name="RentalIncome" class="form-control" autocomplete="off">
+                                </div>
+                            </div>
+                            <div class="form-group">
+
+                                <!--sdfsdfsdf-->
+
+                                <label class="col-lg-4 control-label">Upload your last salary slip: </label><br />
+                                <div class="col-lg-6">
+                                    <button type="button" class="btn btn-primary" style="display:block;width:auto;height:auto;" onclick="document.getElementById('getFile').click()">UPLOAD SALARY SLIP</button>
+                                    @*@Html.TextBoxFor(Model => Model.SlipFile, "", new { Type = "file" })*@
+                                    <input type='file' name="SlipFile" id="getFile" style="display:none">
+                                    <span>Max file size 4MB</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-4 control-label" for="PropertyStatusVal">
+                                    Property Status:<font color="red">*</font> :
+                                </label>
+                                <div class="col-lg-6">
+                                    <select id="PropertyStatusVal" name="PropertyStatusVal">
+                                        <option selected disabled value=''>Please Select Property Status</option>
+                                        @foreach (var item in Model.PropertyStatus)
+                                        {
+                                            <option class="text-center" value="@item.Id">@item.PropertyStatus</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-6 control-label" for="CreditCost">Credit cost (amount of the contract subscriber's share of all outstanding loans): </label>
+                                <div class="col-lg-6">
+                                    <input type="number" id="CreditCost" name="CreditCost" class="form-control" autocomplete="off">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-lg-6 control-label" for="MonthlyRent">Monthly rent (if you are tenant or co-tenant): </label>
+                                <div class="col-lg-6">
+                                    <input type="number" id="MonthlyRent" name="MonthlyRent" class="form-control" autocomplete="off">
+                                </div>
+                            </div>
+
+
+                            <div class="clearfix" style="height: 10px;clear: both;"></div>
+                            <div class="clearfix" style="height: 10px;clear: both;"></div>
+                            <div class="form-group">
+                                <div class="col-lg-10 col-lg-offset-2">
+
+                                    <button class="btn btn-warning back2" type="button"><span class="fa fa-arrow-left"></span> Back</button>
+                                    <button id="savebtn2" class="btn btn-primary" type="button">Save</button>
+                                    <button class="btn btn-primary open2" type="button">Next <span class="fa fa-arrow-right"></span></button>
+                                </div>
+                                <div id="link-copied3" class="d-none">
+                                    Your Data Has Been Successfully Saved.
+                                </div>
+                                <div id="link-copied4" class="d-none">
+                                    Please Fill in a valid value for all required Fileds
+                                </div>
+
+                            </div>
+                        </fieldset>
+                    </div>
+
+                    <div id="sf3" class="frm" style="display: none;">
+                        <fieldset>
+                            <legend>Step 3 of 3</legend>
+
+                            <h5>Some explanations about your Private Lease contract</h5><br />
+                            <h6>Private Lease</h6>
+                            <small>
+                                Private Lease is a long-term rental option that allows individuals to rent a new car for a specified period of time and mileage. The private leasing formula includes all vehicle-related services for a single<br />
+                                fixed monthly amount (insurance , maintenance and repairs , winter and summer tyres , breakdown and roadside assistance , road tax , immediate replacement vehicle).
+                            </small>
+                            <br /><br />
+                            <small>You need to download and consider the Pre-contract information contained in the link below. The Pre-contract information will explain the key features of your lease contract.</small>
+                            <br /><br />
+                            <small>Please read this information carefully so that you understand how your agreement will work. If you should have any questions please call 31 05 36 60 or send an email to privatelease@axus.lu.</small>
+                            <br /><br />
+                            <div>
+                                <a href="~/Pdfs/termsOfUse.pdf" target="_blank">Download Pre-Contact Information(.pdf)</a>
+                            </div>
+                            <br />
+                            <div class="form-group">
+                                <div class="checkbox checkbox-primary">
+
+                                    <label for="review">
+                                        I have reviewed and accept the information in these documents
+                                    </label>
+                                    <input id="review" name="review" required type="checkbox">
+                                </div>
+                            </div>
+                            <div class="clearfix" style="height: 10px;clear: both;"></div>
+
+                            <div class="form-group">
+                                <div class="col-lg-10 col-lg-offset-2">
+                                    <button class="btn btn-warning back3" type="button"><span class="fa fa-arrow-left"></span> Back</button>
+                                    <button class="btn btn-primary" type="submit">Submit </button>
+                                    <img src="spinner.gif" alt="" id="loader" style="display: none">
+                                </div>
+                            </div>
+
+                        </fieldset>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+
+
+    </div>
+    <br /><br /><br /><br /><br />
+    <!-------------------------------------------------------------- footer ------------------------------------------------------------------->
+
+    <footer class="footer" style="background-color: black;">
+        <div class="container" style="height: 60px;">
+            <div class="row justify-content-between">
+                <div class="col-md-3 pt-3">
+                    <ul class="list-inline quicklinks">
+                        <li class="list-inline-item">
+                            <a href="#" style="color: white;">&copy;&nbsp;Quote Generation System</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-6 pt-3">
+                    <ul class="list-inline quicklinks" style="color: white;">
+                        <li class="list-inline-item">
+                            |&nbsp;<a href="#" style="color: white;">Contact</a>
+                        </li>
+                        <li class="list-inline-item">
+                            |&nbsp;<a href="~/Pdfs/PrivatePolicy.pdf" style="color: white;">Private Policy</a>
+                        </li>
+                        <li class="list-inline-item">
+                            |&nbsp;<a href="~/Pdfs/TermsOfUse.pdf" style="color: white;">Terms of Use</a>
+                        </li>
+                        <li class="list-inline-item">
+                            |&nbsp;<a href="~/Pdfs/CookiePolicy.pdf" style="color: white;">Cookie Policy</a>&nbsp;|
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.11/jquery.validate.unobtrusive.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        window.onload = function () {
+            var PersonalDetailsData1 = this.JSON.parse(this.localStorage.getItem("PersonalDetailsData1"));
+            var PersonalDetailsData2 = this.JSON.parse(this.localStorage.getItem("PersonalDetailsData2"));
+            if (PersonalDetailsData1 !== null) {
+                $('#Address1').val(PersonalDetailsData1.Address1);
+                $('#City').val(PersonalDetailsData1.City);
+                $('#MaritalStatusVal').val(PersonalDetailsData1.MaritalStatusVal);
+                $('#NationalityVal').val(PersonalDetailsData1.NationalityVal);
+                $('#PostCode').val(PersonalDetailsData1.PostCode);
+                $('#RegistrationNo').val(PersonalDetailsData1.RegistrationNo);
+                $('#UserEmail').val(PersonalDetailsData1.UserEmail);
+                $('#dob').val(PersonalDetailsData1.dob);
+                $('#liveddate').val(PersonalDetailsData1.liveddate);
+            }
+
+            if (PersonalDetailsData2 !== null) {
+                $('#EmployeeName').val(PersonalDetailsData2.EmployeeName);
+                $('#EmployementStatusVal').val(PersonalDetailsData2.EmployementStatusVal);
+                $('#ContractTypesVal').val(PersonalDetailsData2.ContractTypesVal);
+                $('#startdate').val(PersonalDetailsData2.startdate);
+                $('#empAddress1').val(PersonalDetailsData2.empAddress1);
+                $('#empCity').val(PersonalDetailsData2.empCity);
+                $('#empCountry').val(PersonalDetailsData2.empCountry);
+                $('#NetMonthlyIncome').val(PersonalDetailsData2.NetMonthlyIncome);
+                $('#RentalIncome').val(PersonalDetailsData2.RentalIncome);
+                $('#PropertyStatusVal').val(PersonalDetailsData2.PropertyStatusVal);
+                $('#CreditCost').val(PersonalDetailsData2.CreditCost);
+                $('#MonthlyRent').val(PersonalDetailsData2.MonthlyRent);
+                $('#empPostCode').val(PersonalDetailsData2.empPostCode);
+            }
+        }
+        jQuery().ready(function () {
+
+            // validate form on keyup and submit
+            var v = jQuery("#basicform").validate({
+                rules: {
+                    FirstName: {
+                        required: true
+                    },
+                    LastName: {
+                        required: true
+                    },
+                    dob: {
+                        required: true
+                    },
+                    MaritalStatusVal: {
+                        required: true
+                    },
+                    NationalityVal: {
+                        required: true
+                    },
+                    RegistrationNo: {
+                        required: true
+                    },
+                    UserEmail: {
+                        required: true,
+                        minlength: 2,
+                        email: true,
+                        maxlength: 100,
+                    },
+                    Contact: {
+                        required: true,
+                        maxlength: 15,
+                    },
+                    Address1: {
+                        required: true,
+                    },
+                    City: {
+                        required: true,
+                    },
+                    PostCode: {
+                        required: true,
+                    },
+                    EmployeeName: {
+                        required: true,
+                    },
+                    EmployementStatusVal: {
+                        required: true,
+                    },
+                    ContractTypesVal: {
+                        required: true,
+                    },
+                    startdate: {
+                        required: true,
+                    },
+                    empAddress1: {
+                        required: true,
+                    },
+                    empCountry: {
+                        required: true,
+                    },
+                    empCity: {
+                        required: true,
+                    },
+                    empPostCode: {
+                        required: true,
+                    },
+                    NetMonthlyIncome: {
+                        required: true,
+                    },
+                    RentalIncome: {
+                        required: true,
+                    },
+                    PropertyStatusVal: {
+                        required: true,
+                    },
+                    CreditCost: {
+                        required: true,
+                    },
+                    MonthlyRent: {
+                        required: true,
+                    },
+                    review: {
+                        required: true,
+                    }
+
+
+
+
+                },
+                messages: {
+                    FirstName: {
+                        required: "Please enter first name"
+                    },
+                    LastName: {
+                        required: "Please enter last name"
+                    },
+                    dob: {
+                        required: "Please enter date"
+                    },
+                    MaritalStatusVal: {
+                        required: "",
+                    },
+                    NationalityVal: {
+                        required: "",
+                    },
+                    RegistrationNo: {
+                        required: "Please Enter RegistrationNo"
+                    },
+                    UserEmail: {
+                        required: "Please Enter UserEmail"
+                    },
+                    Contact: {
+                        required: "Please Enter Mobile No"
+                    },
+                    Address1: {
+                        required: "Please Enter Address"
+                    },
+                    City: {
+                        required: "Please Enter City"
+                    },
+                    PostCode: {
+                        required: "Please Enter Postcode"
+                    },
+                    EmployeeName: {
+                        required: "Please Enter Employee Name"
+                    },
+                    EmployementStatusVal: {
+                        required: ""
+                    },
+                    ContractTypesVal: {
+                        required: ""
+                    },
+                    startdate: {
+                        required: ""
+                    },
+                    empAddress1: {
+                        required: "Please Enter Address"
+                    },
+                    empCountry: {
+                        required: ""
+                    },
+                    empCity: {
+                        required: "Please Enter City"
+                    },
+                    empPostCode: {
+                        required: "Please Enter Postcode"
+                    },
+                    NetMonthlyIncome: {
+                        required: "Please Enter NetMonthy Income",
+                    },
+                    RentalIncome: {
+                        required: "Please Enter Rental Income",
+                    },
+                    PropertyStatusVal: {
+                        required: "",
+                    },
+                    CreditCost: {
+                        required: "Please Enter Credit Cost",
+                    },
+                    MonthlyRent: {
+                        required: "Please Enter Monthly Rent",
+                    },
+                    review: {
+                        required: "*",
+                    }
+                },
+                errorElement: "span",
+                errorClass: "help-inline-error",
+            });
+
+            $(".open1").click(function () {
+                if (v.form()) {
+                    $(".frm").hide("fast");
+                    $("#sf2").show("slow");
+                }
+            });
+
+            $(".open2").click(function () {
+                if (v.form()) {
+                    $(".frm").hide("fast");
+                    $("#sf3").show("slow");
+                }
+            });
+
+            $(".open3").click(function () {
+                if (v.form()) {
+                    $("#loader").show();
+                    setTimeout(function () {
+                        $("#basicform").html('<h2>Thanks for your time.</h2>');
+                    }, 1000);
+                    return false;
+                }
+            });
+
+            $(".back2").click(function () {
+                $(".frm").hide("fast");
+                $("#sf1").show("slow");
+            });
+
+            $(".back3").click(function () {
+                $(".frm").hide("fast");
+                $("#sf2").show("slow");
+            });
+
+        });
+        $(function () {
+            $("#savebtn1").click(function () {
+                var PersonalDetails1 = {};
+                PersonalDetails1.dob = document.getElementById('dob').value;
+                PersonalDetails1.MaritalStatusVal = document.getElementById('MaritalStatusVal').value;
+                PersonalDetails1.NationalityVal = document.getElementById('NationalityVal').value;
+                PersonalDetails1.RegistrationNo = document.getElementById('RegistrationNo').value;
+                PersonalDetails1.UserEmail = document.getElementById('UserEmail').value;
+                PersonalDetails1.Address1 = document.getElementById('Address1').value;
+                PersonalDetails1.City = document.getElementById('City').value;
+                PersonalDetails1.PostCode = document.getElementById('PostCode').value;
+                PersonalDetails1.liveddate = document.getElementById('liveddate').value;
+                localStorage.setItem("PersonalDetailsData1", JSON.stringify(PersonalDetails1));
+
+                if ($("#basicform").valid()) {
+
+                    $("#link-copied1").removeClass("d-none");
+                    $("#link-copied1").show();
+                    setTimeout(function () {
+                        $('#link-copied1').hide();
+                    }, 2000);
+                }
+                else {
+                    $("#link-copied2").removeClass("d-none");
+                    $("#link-copied2").show();
+                    setTimeout(function () {
+                        $('#link-copied2').hide();
+                    }, 2000);
+                }
+            });
+        });
+        $(function () {
+            $("#savebtn2").click(function () {
+                var PersonalDetails2 = {};
+                PersonalDetails2.EmployeeName = document.getElementById('EmployeeName').value;
+                PersonalDetails2.EmployementStatusVal = document.getElementById('EmployementStatusVal').value;
+                PersonalDetails2.ContractTypesVal = document.getElementById('ContractTypesVal').value;
+                PersonalDetails2.startdate = document.getElementById('startdate').value;
+                PersonalDetails2.empAddress1 = document.getElementById('empAddress1').value;
+                PersonalDetails2.empCountry = document.getElementById('empCountry').value;
+                PersonalDetails2.empCity = document.getElementById('empCity').value;
+                PersonalDetails2.empPostCode = document.getElementById('empPostCode').value;
+
+                PersonalDetails2.NetMonthlyIncome = document.getElementById('NetMonthlyIncome').value;
+                PersonalDetails2.RentalIncome = document.getElementById('RentalIncome').value;
+                PersonalDetails2.PropertyStatusVal = document.getElementById('PropertyStatusVal').value;
+                PersonalDetails2.CreditCost = document.getElementById('CreditCost').value;
+                PersonalDetails2.MonthlyRent = document.getElementById('MonthlyRent').value;
+
+                localStorage.setItem("PersonalDetailsData2", JSON.stringify(PersonalDetails2));
+
+
+                if ($("#basicform").valid()) {
+
+                    $("#link-copied3").removeClass("d-none");
+                    $("#link-copied3").show();
+                    setTimeout(function () {
+                        $('#link-copied3').hide();
+                    }, 2000);
+                }
+                else {
+                    $("#link-copied4").removeClass("d-none");
+                    $("#link-copied4").show();
+                    setTimeout(function () {
+                        $('#link-copied4').hide();
+                    }, 2000);
+                }
+            });
+        });
+    </script>
+
+</body>
+

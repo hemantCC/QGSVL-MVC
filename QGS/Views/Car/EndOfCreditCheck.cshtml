@@ -1,0 +1,257 @@
+﻿@model QGS.Entities.BusinessEntities.OrderedSingleQuoteVM
+@{
+    Layout = null;
+    var car = ViewData["car"] as QGS.Entities.BusinessEntities.CarVM;
+
+}
+<!doctype html>
+<head>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="~/Content/css/car/stepper.css" rel="stylesheet">
+    <style>
+        li a {
+            color: white
+        }
+
+            li a:hover {
+                color: white;
+                text-decoration: none
+            }
+
+        ul li:hover {
+            background-color: red;
+        }
+    </style>
+
+</head><
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color:black; height:70px;">
+        <div class="container">
+
+            <a class="navbar-brand font-bold" href="/Car/HomeCarDetails"><h2>QGS<em style="font-style:normal;color:red">VL</em></h2></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-4" aria-controls="navbarSupportedContent-4" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent-4">
+                <ul class="navbar-nav ml-auto">
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Car/HomeCarDetails">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="http://localhost:50093/car/MyQuote?usr_email=@User.Identity.Name">My Quotes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Car/HomeCarDetails/#section1">What is Private Lease</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Car/FAQs">FAQ</a>
+                    </li>
+                    @{
+                        if (User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Account/Logout"><i class="fas fa-sign-out-alt"></i>Log Out</a>
+                            </li>
+                        }
+                    }
+                    @{
+                        if (!User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Account/Login?returnUrl=1"><i class="fas fa-sign-out-alt"></i>Login</a>
+                            </li>
+                        }
+                    }
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <br />
+    <br />
+    <br />
+    <br />
+
+    <!--/.Navbar-->
+    <!-------------------------------------------------------------- <section-2> ------------------------------------------------------------------->
+    <!--Stepper Section-->
+    <!-------------------------------------------------------------- <section> ------------------------------------------------------------------->
+    <div class="container">
+        <div class="stepwizard">
+            <div class="stepwizard-row setup-panel">
+                <div class="stepwizard-step col-xs-3">
+                    <a href="#step-1" type="button" class="btn btn-default btn-circle" style="background-color:lightblue;">1</a>
+                    <p><small>Start Application</small></p>
+                </div>
+                <div class="stepwizard-step col-xs-3">
+                    <a href="#step-2" type="button" class="btn btn-success btn-circle">2</a>
+                    <p><small>Credit Check</small></p>
+                </div>
+                <div class="stepwizard-step col-xs-3">
+                    <a href="#step-3" type="button" class="btn btn-default btn-circle" style="background-color:lightblue;">3</a>
+                    <p><small>Direct debit</small></p>
+                </div>
+                <div class="stepwizard-step col-xs-3">
+                    <a href="#step-4" type="button" class="btn btn-default btn-circle" style="background-color:lightblue;">4</a>
+                    <p><small>Documents</small></p>
+                </div>
+                <div class="stepwizard-step col-xs-3">
+                    <a href="#step-4" type="button" class="btn btn-default btn-circle" style="background-color:lightblue;">5</a>
+                    <p><small>E-Sign</small></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br /><br /><br /><br />
+    <!-------------------------------------------------------------- <section-3> ------------------------------------------------------------------->
+    <div class="container">
+        <div id="accordion">
+            <div class="row">
+                <div class="card" style="width:100%;">
+                    <button class="btn btn-light" style="width:100%; height:60px;" data-toggle="collapse" data-target="#collapseOne"
+                            aria-expanded="false" aria-controls="collapseOne">
+                        Quote Info
+                        <i class="fa fa-plus" style="float:right;"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="card" style="width: 100%;">
+                    <div class="collapse show" id="collapseOne" aria-labelledby="headingOne" data-parent="#accordion">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-7 border-right">
+                                    <Strong>Credit check currently under process</Strong><br />
+                                    <br /><p>We need more time to analyse your profile. We will come back to you within 48 hours.</p><br />
+
+                                    <p>  After 48 hours please do check your email or quote status in your dashboard.</p><br />
+
+                                    <p>All cars on special offer are available whilst stocks last and we're unable to hold the car for you until you've placed your order. </p>
+                                    <p>Please continue to place your order as soon as possible.</p><br />
+
+                                    <p> If you should have any questions please call 31 05 36 60 or send an email to privatelease@axus.lu.</p><br />
+                                </div>
+                                @if (ViewBag.Error != null)
+                                {
+                                    <div class="col-md-5">
+                                        <br />
+                                        <center>
+                                            <p style="color:red;font-size:larger">@ViewBag.Error</p>
+                                            <span style="color:red"><i class="fa fa-frown-o fa-4x" aria-hidden="true"></i></span>
+                                        </center>
+                                    </div>
+
+                                }
+                                else
+                                {
+                                    <div class="col-md-5">
+                                        <strong>
+                                            Your order details<br />
+                                            Quote Reference
+                                        </strong><br /><br />
+                                        <div class="container">
+                                            <label class="badge badge-secondary">@Html.DisplayNameFor(m => m.ModelName) :</label>&nbsp;
+                                            <span><b>@car.ModelName</b></span>
+                                        </div>
+                                        <div class="container">
+                                            <label class="badge badge-secondary">@Html.DisplayNameFor(m => m.FuelType) :</label>
+                                            <span><b>@car.FuelType</b></span>
+                                        </div>
+                                        <div class="container">
+                                            <label class="badge badge-secondary">@Html.DisplayNameFor(m => m.Transmission) :</label>&nbsp;
+                                            <span><b>@car.Transmission</b></span>
+                                        </div>
+                                        <div class="container">
+                                            <label class="badge badge-secondary">@Html.DisplayNameFor(m => m.Type) :</label>&nbsp;
+                                            <span><b>@car.Type</b></span>
+                                        </div>
+                                        <div class="container">
+                                            <label class="badge badge-secondary">@Html.DisplayNameFor(m => m.Co2Emission_g_Km_) :</label>&nbsp;
+                                            <span><b>@car.Co2Emission_g_Km_  g/Km</b></span>
+                                        </div>
+                                        <div class="container">
+                                            <label class="badge badge-secondary">@Html.DisplayNameFor(m => m.Consumption_L_100Km_) :</label>&nbsp;
+                                            <span><b>@car.Consumption_L_100Km_ L/100Km</b></span>
+                                        </div>
+
+                                        <div class="container">
+                                            <label class="badge badge-secondary">@Html.DisplayNameFor(m => m.final_price) :</label>&nbsp;
+                                            <span><b>@car.final_price €</b></span>
+                                        </div>
+                                        <div class="container">
+                                            <label class="badge badge-secondary">@Html.DisplayNameFor(m => m.final_time) :</label>&nbsp;
+                                            <span><b>@car.final_time months</b></span>
+                                        </div>
+
+
+                                    </div>
+                                }
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <br /><br />
+        <div style="float:right">
+            @Html.ActionLink("Continue", "DirectDebit", "Step", null, new { @class = "btn btn-success" })
+            @*<button class="btn btn-secondary" id="" href="/Step/" type="submit">Continue</button>*@
+        </div>
+    </div>
+
+
+
+
+
+    <!-------------------------------------------------------------- <section-4> ------------------------------------------------------------------->
+    <br /><br /><br /><br />
+
+
+    <footer class="footer fixed-bottom" style="background-color:black @*#2C3335;*@">
+        <div class="container" style="height: 60px;">
+            <div class="row justify-content-between">
+                <div class="col-md-3 pt-3">
+                    <ul class="list-inline quicklinks">
+                        <li class="list-inline-item">
+                            <a href="#" style="color: white;">&copy;&nbsp;Quote Generation System</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-6 pt-3">
+                    <ul class="list-inline quicklinks" style="color: white;">
+                        <li class="list-inline-item">
+                            |&nbsp;<a href="#" style="color: white;">Contact</a>
+                        </li>
+                        <li class="list-inline-item">
+                            |&nbsp;<a href="~/Pdfs/PrivatePolicy.pdf" style="color: white;">Private Policy</a>
+                        </li>
+                        <li class="list-inline-item">
+                            |&nbsp;<a href="~/Pdfs/TermsOfUse.pdf" style="color: white;">Terms of Use</a>
+                        </li>
+                        <li class="list-inline-item">
+                            |&nbsp;<a href="~/Pdfs/CookiePolicy.pdf" style="color: white;">Cookie Policy</a>&nbsp;|
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.1/js/ion.rangeSlider.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.js"></script>
+</body>

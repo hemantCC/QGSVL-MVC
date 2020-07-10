@@ -1,0 +1,59 @@
+﻿@model QGS.Entities.DataEntities.tblQuote
+
+@{
+    ViewBag.Title = "Details";
+}
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4"></div>
+
+            <div class="col-md-4 mt-5">
+                <!--Edit Details-->
+                <h4>Edit Quote Status</h4>
+                <hr />
+                <div class="row">
+                    <div class="col-md-6">@Html.DisplayNameFor(model => model.QuoteId)</div>
+                    <div class="col-md-6">@Html.DisplayFor(model => model.QuoteId)</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">@Html.DisplayNameFor(model => model.tblUser.UserEmail)</div>
+                    <div class="col-md-6">@Html.DisplayFor(model => model.tblUser.UserEmail)</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">@Html.DisplayNameFor(model => model.tblUser.Contact)</div>
+                    <div class="col-md-6">@Html.DisplayFor(model => model.tblUser.Contact)</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">@Html.DisplayNameFor(model => model.tblVehicleDetail.Brand)</div>
+                    <div class="col-md-6">@Html.DisplayFor(model => model.tblVehicleDetail.Brand)</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">@Html.DisplayNameFor(model => model.tblVehicleDetail.ModelName)</div>
+                    <div class="col-md-6">@Html.DisplayFor(model => model.tblVehicleDetail.ModelName)</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">@Html.DisplayNameFor(model => model.tblMileage.Mileage_K_)</div>
+                    <div class="col-md-6">@Html.DisplayFor(model => model.tblMileage.Mileage_K_)</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">@Html.DisplayNameFor(model => model.TotalPrice)</div>
+                    <div class="col-md-6">@Html.DisplayFor(model => model.TotalPrice)</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">@Html.DisplayNameFor(model => model.tblStatu.Status)</div>
+                    <div class="col-md-6">@Html.DisplayFor(model => model.tblStatu.Status)</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6"><input type="submit" value="Save" class="btn btn-primary" /></div>
+                    <div class="col-md-6">@Html.ActionLink("Back to List", "Index", "Administrator", htmlAttributes: new { @class = "btn btn-danger" })</div>
+                </div>
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+
+    </div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.QuoteId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

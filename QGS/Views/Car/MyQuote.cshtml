@@ -1,0 +1,264 @@
+﻿@model QGS.Entities.BusinessEntities.UsrQuoteVM
+
+@{
+    Layout = null;
+    int i = 0;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <style>
+
+        li a {
+            color: white
+        }
+
+        li a:hover {
+            color: white;
+            text-decoration: none
+        }
+
+
+        ul li:hover {
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color:black; height:70px;">
+        <div class="container">
+
+            <a class="navbar-brand font-bold" href="/Home/Index"><h2>QGS<em style="font-style:normal;color:red">VL</em></h2></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-4" aria-controls="navbarSupportedContent-4" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent-4">
+                <ul class="navbar-nav ml-auto">
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Car/HomeCarDetails">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="http://localhost:50093/car/MyQuote?usr_email=@User.Identity.Name">My Quotes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Car/HomeCarDetails/#section1">What is Private Lease</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Car/FAQs">FAQ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Account/Logout"><i class="fas fa-sign-out-alt"></i>LogOut</a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    @if (Model.quoteDetails.Count == 0)
+    {
+        <center>
+            <p style="color:red;font-size:larger">@ViewBag.Error</p>
+            <span style="color:red"><i class="fa fa-frown-o fa-4x" aria-hidden="true"></i></span>
+        </center>
+    }
+    else
+    {
+        <br /><br /><br /><br />
+        <center><h1 class="display-4">My Quotes</h1></center>
+        <center><h6><span class="badge badge-secondary">Click On Below Quote For More Details</span></h6></center>
+
+        for (int j = 0; j < Model.quoteDetails.Count; j++)
+        {
+            <div id="accordion" class="container">
+                @{ i += 1;
+                    var fName = "accord" + i;
+                }
+                <div class="row">
+                    <div class="card" style="width:100%;">
+                        <button class="btn btn-light"
+                                style="width:100%; height:60px;background-color: #f0f0f0;
+                                color:black" data-toggle="collapse" data-target="#@{@fName} "
+                                aria-expanded="false" aria-controls="collapseOne">
+                            <b>Quote - @i</b>
+                            <i class="fa fa-plus" style="float:right;"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="card" style="width: 100%;">
+                        <div class="collapse" id="@fName" aria-labelledby="headingOne" data-parent="#accordion">
+                            <div class="card-body">
+
+                                <br /><br />
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-sm-4" style="border-right: 2px solid black;">
+
+                                            <img src="@Url.Content(Model.quoteDetails[j].CarImage)" id="car_img" style="width:155px;margin-left:30px;"><br />
+
+
+                                        </div>
+                                        <div class="col-sm-4" style="border-right: 2px solid black;">
+                                            <span class="m_modelName">@Model.quoteDetails[j].ModelName</span><br />
+                                            <span id="m_fuelType">@Model.quoteDetails[j].fuelType</span> | <span id="m_transmission">@Model.quoteDetails[j].transmission</span><br />
+                                            <span id="m_hp">@Model.quoteDetails[j].horsePower</span> HP | <span id="m_co2"></span>@Model.quoteDetails[j].co2Emission g/Km <br />
+                                            <span id="m_colour">@Model.quoteDetails[j].color</span>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            Per Month €<span class="m_price">@Model.quoteDetails[j].TotalPrice</span> Incl VAT<br>
+                                            ✔ <span class="m_time">@Model.quoteDetails[j].PaybackTime_Month_</span> Months<br>
+                                            ✔ <span class="m_mileage">@Model.quoteDetails[j].Mileage_K_</span> km per annum<br>
+                                        </div>
+                                    </div>
+                                    @*</br>*@
+                                    <h5>Personal Contract Hire</h5>
+                                    <h6>
+                                        straightforward hire product where you hand the car back at the end of your
+                                        agreement.
+                                    </h6>
+                                    <br />
+
+                                    <h5>Your Quote</h5>
+                                    <br />
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <h6><span class="m_time"></span> Monthly Payments :<span>&nbsp;</span></h6>
+                                            </td>
+                                            <td>
+                                                <h6><span class="m_price">@Model.quoteDetails[j].TotalPrice</span> €</h6>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <h6>Mileage Per Annum :</h6>
+                                            </td>
+                                            <td>
+                                                <h6><span class="m_mileage">@Model.quoteDetails[j].PaybackTime_Month_</span> km</h6>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <h6>Duration Of Agreement :</h6>
+                                            </td>
+                                            <td>
+                                                <h6><span class="m_time">@Model.quoteDetails[j].PaybackTime_Month_</span> months</h6>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <br />
+                                    <p>
+                                        Private Lease is a long-term rental product reserved for private individuals
+                                        (24 to 48 months, max. 100,000 km) without purchase option, offered by BIL
+                                        Private Lease, 270 route d'Arlon at 8010 Strassen (Commercial
+                                        Register 23,299). Offer reserved for private individuals resident in
+                                        Luxembourg and subject to approval of the file, and after signature for
+                                        approval of the offer, the framework contract and the general terms
+                                        and conditions contained therein, the document for the transfer of
+                                        remuneration and the prior declaration of insurance cover. The tenant has a
+                                        14-day right of withdrawal under this rental contract. Subject to
+                                        change in the event of a change in the list price or taxes.
+                                    </p>
+                                </div>
+
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+    }
+
+    <!-------------------------------------------------------------- <section-4> ------------------------------------------------------------------->
+    <br /><br /><br /><br />
+
+
+    <footer class="footer fixed-bottom" style="background-color:black @*#2C3335;*@">
+        <div class="container" style="height: 60px;">
+            <div class="row justify-content-between">
+                <div class="col-md-3 pt-3">
+                    <ul class="list-inline quicklinks">
+                        <li class="list-inline-item">
+                            <a href="#" style="color: white;">&copy;&nbsp;Quote Generation System</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-6 pt-3">
+                    <ul class="list-inline quicklinks" style="color: white;">
+                        <li class="list-inline-item">
+                            |&nbsp;<a href="#" style="color: white;">Contact</a>
+                        </li>
+                        <li class="list-inline-item">
+                            |&nbsp;<a href="~/Pdfs/PrivatePolicy.pdf" style="color: white;">Private Policy</a>
+                        </li>
+                        <li class="list-inline-item">
+                            |&nbsp;<a href="~/Pdfs/TermsOfUse.pdf" style="color: white;">Terms of Use</a>
+                        </li>
+                        <li class="list-inline-item">
+                            |&nbsp;<a href="~/Pdfs/CookiePolicy.pdf" style="color: white;">Cookie Policy</a>&nbsp;|
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+            crossorigin="anonymous"></script>
+
+    <script>
+        $(document).ready(function () {
+
+            $(".card > button").on("click", function () {
+                if ($(this).hasClass("active")) {
+                    $(this).removeClass("active");
+                    $(this)
+                        .siblings(".card-body")
+
+                    $(".card > button i")
+                        .removeClass("fa-minus")
+                        .addClass("fa-plus");
+                } else {
+                    $(".card > button i")
+                        .removeClass("fa-minus")
+                        .addClass("fa-plus");
+                    $(this)
+                        .find("i")
+                        .removeClass("fa-plus")
+                        .addClass("fa-minus");
+                    $(".card > button").removeClass("active");
+                    $(this).addClass("active");
+                    $(".card-body")
+                    $(this)
+                        .siblings(".card-body")
+
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

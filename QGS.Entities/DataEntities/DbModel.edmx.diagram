@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="4eca5225f4b3485ca9e2f73c3f71a9bb" Name="Diagram1">
+        <EntityTypeShape EntityType="DbQGSVLModel.tblBankDetail" Width="1.5" PointX="5.25" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbQGSVLModel.tblContractType" Width="1.5" PointX="6" PointY="19.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbQGSVLModel.tblDocument" Width="1.5" PointX="7.5" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbQGSVLModel.tblDocumentType" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbQGSVLModel.tblDriver" Width="1.5" PointX="5.25" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbQGSVLModel.tblEmployementDetail" Width="1.5" PointX="8.25" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbQGSVLModel.tblEmployementStatu" Width="1.5" PointX="6" PointY="22.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbQGSVLModel.tblEquipment" Width="1.5" PointX="5.25" PointY="25.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbQGSVLModel.tblIncludedService" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbQGSVLModel.tblInsurance" Width="1.5" PointX="3" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbQGSVLModel.tblMaritalStatu" Width="1.5" PointX="0.75" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbQGSVLModel.tblMileage" Width="1.5" PointX="3" PointY="15" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbQGSVLModel.tblNationality" Width="1.5" PointX="0.75" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbQGSVLModel.tblPaybackTime" Width="1.5" PointX="3" PointY="17.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbQGSVLModel.tblPropertyStatu" Width="1.5" PointX="6" PointY="16.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbQGSVLModel.tblQuote" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbQGSVLModel.tblRentDetail" Width="1.5" PointX="8.25" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbQGSVLModel.tblRoleManagement" Width="1.5" PointX="0.75" PointY="13.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbQGSVLModel.tblStatu" Width="1.5" PointX="3" PointY="19.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbQGSVLModel.tblUser" Width="1.5" PointX="3" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbQGSVLModel.tblVehicleDetail" Width="1.5" PointX="3" PointY="22" IsExpanded="true" />
+        <AssociationConnector Association="DbQGSVLModel.FK_tblBankDetail_tblQuote" ManuallyRouted="false" />
+        <AssociationConnector Association="DbQGSVLModel.FK_tblBankDetail_tblUser" ManuallyRouted="false" />
+        <AssociationConnector Association="DbQGSVLModel.FK_tblEmployementDetail_tblContractType" ManuallyRouted="false" />
+        <AssociationConnector Association="DbQGSVLModel.FK_tblDocument_tblDocumentType" ManuallyRouted="false" />
+        <AssociationConnector Association="DbQGSVLModel.FK_tblDocument_tblQuote" ManuallyRouted="false" />
+        <AssociationConnector Association="DbQGSVLModel.FK_tblDriver_tblUser" ManuallyRouted="false" />
+        <AssociationConnector Association="DbQGSVLModel.FK_tblEmployementDetail_tblEmployeeStatus" ManuallyRouted="false" />
+        <AssociationConnector Association="DbQGSVLModel.FK_tblEmployementDetail_tblUser" ManuallyRouted="false" />
+        <AssociationConnector Association="DbQGSVLModel.FK_tblVehicleDetails_tblEquipment" ManuallyRouted="false" />
+        <AssociationConnector Association="DbQGSVLModel.tblQuote_fk2" ManuallyRouted="false" />
+        <AssociationConnector Association="DbQGSVLModel.FK_tblUser_tblMaritalStatus" ManuallyRouted="false" />
+        <AssociationConnector Association="DbQGSVLModel.tblQuote_fk3" ManuallyRouted="false" />
+        <AssociationConnector Association="DbQGSVLModel.FK_tblUser_tblNationality" ManuallyRouted="false" />
+        <AssociationConnector Association="DbQGSVLModel.tblQuote_fk5" ManuallyRouted="false" />
+        <AssociationConnector Association="DbQGSVLModel.FK_tblRentDetail_tblPropertyStatus" ManuallyRouted="false" />
+        <AssociationConnector Association="DbQGSVLModel.FK_tblQuote_tblUser" ManuallyRouted="false" />
+        <AssociationConnector Association="DbQGSVLModel.tblQuote_fk1" ManuallyRouted="false" />
+        <AssociationConnector Association="DbQGSVLModel.tblQuote_fk4" ManuallyRouted="false" />
+        <AssociationConnector Association="DbQGSVLModel.FK_tblRentDetail_tblUser" ManuallyRouted="false" />
+        <AssociationConnector Association="DbQGSVLModel.FK_tblUser_tblRoleManager" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,620 @@
+﻿@model IEnumerable<QGS.Entities.BusinessEntities.CarVM>
+
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Vehicle Details</title>
+
+    <!-- Bootstrap CSS CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- Our Custom CSS -->
+    <link href="~/Content/css/car/CarDetailsDesign.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+    <!-- Scrollbar Custom CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color:black; height:70px;">
+        <button type="button" id="sidebarCollapse" class="btn btn-info">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+
+        <div class="container">
+
+            <a class="navbar-brand font-bold" href="/Car/HomeCarDetails"><h2>QGS<em style="font-style:normal;color:red">VL</em></h2></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-4" aria-controls="navbarSupportedContent-4" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent-4">
+                <ul class="navbar-nav ml-auto">
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Car/HomeCarDetails">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="http://localhost:50093/car/MyQuote?usr_email=@User.Identity.Name">My Quotes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="HomeCarDetails/#section1">What is Private Lease</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Car/FAQs">FAQ</a>
+                    </li>
+                    @{
+                        if (User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Account/Logout"><i class="fas fa-sign-out-alt"></i>Log Out</a>
+                            </li>
+                        }
+                    }
+                    @{
+                        if (!User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Account/Login?returnUrl=1"><i class="fas fa-sign-out-alt"></i>Login</a>
+                            </li>
+                        }
+                    }
+
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="wrapper">
+        <!-- Page Content  -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <center>
+                    <h5>SELECT YOUR FILTER</h5>
+                </center>
+            </div>
+            <ul class="list-unstyled components smooth-scroll" id="checkbox-container">
+                <li>
+                    <a id="brand_anchor" href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Brand</a>
+                    <ul class="collapse list-unstyled" id="homeSubmenu">
+                        <li>
+                            <form id="brandList"></form>
+
+                        </li>
+
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false"
+                       class="dropdown-toggle">Fuel Type</a>
+                    <ul class="collapse list-unstyled" id="pageSubmenu">
+                        <li>
+                            <form id="fuelList"></form>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#pageSubmenu1" data-toggle="collapse" aria-expanded="false"
+                       class="dropdown-toggle">Gear Box</a>
+                    <ul class="collapse list-unstyled" id="pageSubmenu1">
+                        <li>
+                            <form id="transmissionList"></form>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#pageSubmenu2" data-toggle="collapse" aria-expanded="false"
+                       class="dropdown-toggle">Body Style</a>
+                    <ul class="collapse list-unstyled" id="pageSubmenu2">
+                        <li>
+                            <form id="typeList"></form>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#pageSubmenu3" data-toggle="collapse" aria-expanded="false"
+                       class="dropdown-toggle">Range</a>
+                    <ul class="collapse list-unstyled" id="pageSubmenu3">
+                        <li>
+                            <form id="rangeList">
+                            </form>
+                        </li>
+                    </ul>
+                </li>
+
+            </ul>
+            <div class="text-center">
+                <button type="button" class="btn-dark" onclick="onResetFilter()">RESET FILTER</button>
+            </div>
+        </nav>
+        <div id="content">
+            <div class="container">
+                <div class="row">
+                    @foreach (var item in Model)
+                    {
+                        <div class="col-sm-12 col-md-6 col-lg-4 car-item">
+
+                            <div class="card" onclick="location.href = '/Car/GetCarDetails/@item.CarId'">
+                                <img src="@Url.Content(item.Image)" class="card-img-top" style="height:224px" />
+                                <div class="card-body serif">
+
+                                    <center><h4 style="height:50px">@item.ModelName</h4></center><br>
+                                    <strong>Fuel Type: </strong> @item.FuelType<br>
+                                    <strong>Gear Box: </strong> @item.Transmission<br>
+                                    <strong>CO2: </strong>@item.Co2Emission_g_Km_ g/km<br>
+                                    <strong>Consumption: </strong>@item.Consumption_L_100Km_ L/100Km<br>
+                                    <div style="display:flex;justify-content:flex-end;width:100%;">
+                                        <span class="product-price" style="flex-wrap:wrap;display:flex;margin-right:-31px;">
+                                            <b>&euro;@item.Price </b>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+        
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"
+            integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ"
+            crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js"
+            integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
+            integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script type="text/javascript">
+        var selectedCarList = @Html.Raw(Json.Encode(ViewData["selectedCarList"]));
+            var selectedFuelList = @Html.Raw(Json.Encode(ViewData["selectedFuelList"]));
+            var selectedTransmissionList = @Html.Raw(Json.Encode(ViewData["selectedTransmissionList"]));
+            var selectedTypesList = @Html.Raw(Json.Encode(ViewData["selectedTypesList"]));
+        var selectedRange = @Html.Raw(Json.Encode(ViewData["selectedRange"]));
+        let tmp = {}
+        if (localStorage.getItem('checkSelectedData') != null) {
+            tmp = localStorage.getItem('checkSelectedData');
+            selectedCarList = tmp.selectedCarList;
+            selectedFuelList = tmp.selectedFuelList;
+            selectedTransmissionList = tmp.selectedTransmissionList;
+            selectedTypesList = tmp.selectedTypesList;
+            selectedRange = tmp.selectedRange;
+
+        } else {
+            tmp.selectedCarList = selectedCarList;
+            tmp.selectedFuelList = selectedFuelList;
+            tmp.selectedTransmissionList = selectedTransmissionList;
+            tmp.selectedTypesList = selectedTypesList;
+            tmp.selectedRange = selectedRange;
+            localStorage.setItem("checkSelectedData", JSON.stringify(tmp));
+        }
+        //console.log(selectedRange);
+        if (selectedCarList == null)
+            selectedCarList = [];
+        if (selectedFuelList == null)
+            selectedFuelList = [];
+        if (selectedTransmissionList == null)
+            selectedTransmissionList = [];
+        if (selectedTypesList == null)
+            selectedTypesList = [];
+        if (selectedRange == null)
+            selectedRange = [];
+
+        function onResetFilter() {
+            $.each($('input[type=checkbox]'), function (index, obj) {
+                obj.checked = false;
+            });
+            $('.car-item').filter(function (index) {
+                $(this).removeClass('d-none');
+            });
+        }
+        $(document).ready(function () {
+            //for filter
+            var cars = @Html.Raw(Json.Encode(Model));
+            console.log(cars);
+            console.log(selectedCarList);
+            document.getElementById('brand_anchor').click();
+            let checkedList = JSON.parse(localStorage.getItem("checkSelectedData"));
+            console.log(checkedList);
+
+            //localStorage.removeItem("checkSelectedData");
+            setTimeout(function () {
+                if (checkedList && checkedList.selectedCarList) {
+                    checkedList.selectedCarList.forEach(d => {
+                        if (selectedCarList.indexOf(d) === -1) {
+                            selectedCarList.push(d);
+                        }
+                        $("input[value='" + d + "']").prop('checked', true);
+                    });
+                }
+                if (checkedList && checkedList.selectedFuelList) {
+                    checkedList.selectedFuelList.forEach(d => {
+                        if (selectedFuelList.indexOf(d) === -1) {
+                            selectedFuelList.push(d);
+                        }
+                        $("input[value='" + d + "']").prop('checked', true);
+                    });
+                }
+                if (checkedList && checkedList.selectedTransmissionList) {
+                    checkedList.selectedTransmissionList.forEach(d => {
+                        if (selectedTransmissionList.indexOf(d) === -1) {
+                            selectedTransmissionList.push(d);
+                        }
+                        $("input[value='" + d + "']").prop('checked', true);
+                    });
+                }
+                if (checkedList && checkedList.selectedTypesList) {
+                    checkedList.selectedTypesList.forEach(d => {
+                        if (selectedTypesList.indexOf(d) === -1) {
+                            selectedTypesList.push(d);
+                        }
+                        $("input[value='" + d + "']").prop('checked', true);
+                    });
+                }
+                if (checkedList && checkedList.selectedRange) {
+                    checkedList.selectedRange.forEach(d => {
+                        if (selectedRange.indexOf(d) === -1) {
+                            selectedRange.push(d);
+                        }
+                        $("input[value='" + d + "']").prop('checked', true);
+                    });
+                }
+                $('.car-item').filter(function (index) {
+                    //var brand = cars[index].Brand;
+                    var brand = cars[index].Brand;
+                    var fuel = cars[index].FuelType;
+                    var trans = cars[index].Transmission;
+                    var type = cars[index].Type;
+                    var brandCheck = selectedCarList.length > 0 ? selectedCarList.includes(brand) : true;
+                    var fuelCheck = selectedFuelList.length > 0 ? selectedFuelList.includes(fuel) : true;
+                    var transmissionCheck = selectedTransmissionList.length > 0 ? selectedTransmissionList.includes(trans) : true;
+                    var typeCheck = selectedTypesList.length > 0 ? selectedTypesList.includes(type) : true;
+
+
+                    var rangeCheck = false;
+                    if (selectedRange.length > 0) {
+                        var price = cars[index].Price;
+                        for (var index of selectedRange) {
+
+                            var min = range[index].min;
+                            var max = range[index].max;
+                            if (price >= min && price <= max) rangeCheck = true;
+                        }
+                    } else {
+                        rangeCheck = true;
+                    }
+                    var r = brandCheck && fuelCheck && transmissionCheck && typeCheck && rangeCheck;
+                    if (r) {
+                        $(this).removeClass('d-none');
+                    }
+                    else {
+                        $(this).addClass('d-none');
+                    }
+                    if (selectedCarList.length == 0 && selectedFuelList.length == 0 && selectedTransmissionList.length == 0 && selectedTypesList.length == 0 && selectedRange.length == 0) {
+                        $(this).removeClass('d-none');
+                    }
+                });
+            }, 1200);
+            var brands = [];
+            var fuelTypes = [];
+            var transmissions = [];
+            var types = [];
+            var range = {
+                0: {
+                    min: 0,
+                    max: 349
+                },
+                1: {
+                    min: 350,
+                    max: 599
+                },
+                2: {
+                    min: 600,
+                    max: 849
+                },
+                3: {
+                    min: 850,
+                    max: 1087
+                },
+                4: {
+                    min: 1088,
+                    max: 2000
+                }
+            }
+            $.each(cars, function (index, car) {
+
+
+                if (!brands.includes(car.Brand)) {
+                    brands.push(car.Brand);
+                }
+                if (!fuelTypes.includes(car.FuelType)) {
+                    fuelTypes.push(car.FuelType);
+                }
+                if (!transmissions.includes(car.Transmission)) {
+                    transmissions.push(car.Transmission);
+                }
+                if (!types.includes(car.Type)) {
+                    types.push(car.Type);
+                }
+            });
+
+            $.each(brands, function (index, brand) {
+                str = '<label class="switch">' +
+                    '    <input type="checkbox" value="' + brand + '">' +
+                    '    <div class="slider round"></div>' +
+                    '    <span>' + brand + '</span>' +
+                    '  </label>' + '<br>';
+                //str = '<input type="checkbox"  value="' + brand + '">' + brand + '<br>';
+                if (selectedCarList.includes(brand)) {
+                    str = '<label class="switch">' +
+                        '    <input type="checkbox" checked value="' + brand + '">' +
+                        '    <div class="slider round"></div>' +
+                        '    <span>' + brand + '</span>' +
+                        '  </label>' + '<br>';
+                }
+                $('#brandList').append(str);
+            });
+
+            $.each(fuelTypes, function (index, fuelType) {
+
+                //str = '<input type="checkbox" value="' + fuelType + '">' + fuelType + '<br>';
+                str = '<label class="switch">' +
+                    '    <input type="checkbox" value="' + fuelType + '">' +
+                    '    <div class="slider round"></div>' +
+                    '    <span>' + fuelType + '</span>' +
+                    '  </label>' + '<br>';
+                if (selectedFuelList.includes(fuelType)) {
+                    //str = '<input type="checkbox" checked value="' + fuelType + '">' + fuelType + '<br>';
+                    str = '<label class="switch">' +
+                        '    <input type="checkbox" checked value="' + fuelType + '">' +
+                        '    <div class="slider round"></div>' +
+                        '    <span>' + fuelType + '</span>' +
+                        '  </label>' + '<br>';
+                }
+                $('#fuelList').append(str);
+            });
+            $.each(transmissions, function (index, transmission) {
+                //str = '<input type="checkbox" value="' + transmission + '">' + transmission + '<br>';
+                str = '<label class="switch">' +
+                    '    <input type="checkbox" value="' + transmission + '">' +
+                    '    <div class="slider round"></div>' +
+                    '    <span>' + transmission + '</span>' +
+                    '  </label>' + '<br>';
+                if (selectedTransmissionList.includes(transmission)) {
+                    str = '<label class="switch">' +
+                        '    <input type="checkbox" checked value="' + transmission + '">' +
+                        '    <div class="slider round"></div>' +
+                        '    <span>' + transmission + '</span>' +
+                        '  </label>' + '<br>';
+                }
+                $('#transmissionList').append(str);
+            });
+
+            $.each(types, function (index, type) {
+                //str = '<input type="checkbox" value="' + type + '">' + type + '<br>';
+                str = '<label class="switch">' +
+                    '    <input type="checkbox" value="' + type + '">' +
+                    '    <div class="slider round"></div>' +
+                    '    <span>' + type + '</span>' +
+                    '  </label>' + '<br>';
+                if (selectedTypesList.includes(type)) {
+                    //str = '<input type="checkbox" checked value="' + type + '">' + type + '<br>';
+                    str = '<label class="switch">' +
+                        '    <input type="checkbox" checked value="' + type + '">' +
+                        '    <div class="slider round"></div>' +
+                        '    <span>' + type + '</span>' +
+                        '  </label>' + '<br>';
+                }
+                $('#typeList').append(str);
+            });
+
+            $.each(range, function (index, obj) {
+                console.log(index);
+                console.log(selectedRange);
+                //str = '<input type="checkbox" value="' + index + '">' + obj.min + '-' + obj.max + '<br>';
+                str = '<label class="switch">' +
+                    '    <input type="checkbox" value="' + index + '">' +
+                    '    <div class="slider round"></div>' +
+                    '    <span>' + obj.min + '-' + obj.max + '</span>' +
+                    '  </label>' + '<br>';
+                if (selectedRange.includes(index)) {
+                    //str = '<input type="checkbox" checked value="' + index + '">' + obj.min + '-' + obj.max + '<br>';
+                    str = '<label class="switch">' +
+                        '    <input type="checkbox" checked value="' + index + '">' +
+                        '    <div class="slider round"></div>' +
+                        '    <span>' + obj.min + '-' + obj.max + '</span>' +
+                        '  </label>' + '<br>';
+                }
+                $('#rangeList').append(str);
+            });
+
+
+            $("input:checkbox,form").attr("autocomplete", "off");
+            $('.car-item').filter(function (index) {
+                //var brand = cars[index].Brand;
+                var brand = cars[index].Brand;
+                var fuel = cars[index].FuelType;
+                var trans = cars[index].Transmission;
+                var type = cars[index].Type;
+                var brandCheck = selectedCarList.length > 0 ? selectedCarList.includes(brand) : true;
+                var fuelCheck = selectedFuelList.length > 0 ? selectedFuelList.includes(fuel) : true;
+                var transmissionCheck = selectedTransmissionList.length > 0 ? selectedTransmissionList.includes(trans) : true;
+                var typeCheck = selectedTypesList.length > 0 ? selectedTypesList.includes(type) : true;
+
+
+                var rangeCheck = false;
+                if (selectedRange.length > 0) {
+                    var price = cars[index].Price;
+                    for (var index of selectedRange) {
+
+                        var min = range[index].min;
+                        var max = range[index].max;
+                        if (price >= min && price <= max) rangeCheck = true;
+                    }
+                } else {
+                    rangeCheck = true;
+                }
+                var r = brandCheck && fuelCheck && transmissionCheck && typeCheck && rangeCheck;
+                if (r) {
+                    $(this).removeClass('d-none');
+                }
+                else {
+                    $(this).addClass('d-none');
+                }
+                if (selectedCarList.length == 0 && selectedFuelList.length == 0 && selectedTransmissionList.length == 0 && selectedTypesList.length == 0 && selectedRange.length == 0) {
+                    $(this).removeClass('d-none');
+                }
+            });
+
+
+
+            $("input[type=checkbox]").change(function (e) {
+                //console.log(selectedCarList);
+                var value = e.target.value;
+                if (e.target.checked) {
+                    //console.log($(this).val());
+
+                    if (brands.includes(value)) {
+                        selectedCarList.push(value);
+                    }
+                    else if (fuelTypes.includes(value)) {
+                        selectedFuelList.push(value);
+                    }
+                    else if (transmissions.includes(value)) {
+                        selectedTransmissionList.push(value);
+                    }
+                    else if (types.includes(value)) {
+                        selectedTypesList.push(value);
+                    }
+                    else if (Object.keys(range).includes(value)) {
+                        selectedRange.push(value);
+                    }
+                }
+                else {
+                    if (!e.target.checked) {
+                        if (selectedCarList.includes(value)) {
+                            var index = selectedCarList.indexOf(value);
+                            selectedCarList.splice(index, 1);
+                        }
+                        else if (selectedFuelList.includes(value)) {
+                            var index = selectedFuelList.indexOf(value);
+                            selectedFuelList.splice(index, 1);
+                        }
+                        else if (selectedTransmissionList.includes(value)) {
+                            var index = selectedTransmissionList.indexOf(value);
+                            selectedTransmissionList.splice(index, 1);
+                        }
+                        else if (selectedTypesList.includes(value)) {
+                            var index = selectedTypesList.indexOf(value);
+                            selectedTypesList.splice(index, 1);
+                        }
+                        else if (selectedRange.includes(value)) {
+                            var index = selectedRange.indexOf(value);
+                            selectedRange.splice(index, 1);
+                        }
+                    }
+
+                }
+                console.log(selectedCarList);
+                let tmp = {};
+                tmp.selectedCarList = selectedCarList;
+                tmp.selectedFuelList = selectedFuelList;
+                tmp.selectedTransmissionList = selectedTransmissionList;
+                tmp.selectedTypesList = selectedTypesList;
+                tmp.selectedRange = selectedRange;
+                localStorage.setItem("checkSelectedData", JSON.stringify(tmp));
+
+
+                console.log(selectedCarList);
+                console.log(selectedFuelList);
+                $('.car-item').filter(function (index) {
+                    //var brand = cars[index].Brand;
+                    var brand = cars[index].Brand;
+                    var fuel = cars[index].FuelType;
+                    var trans = cars[index].Transmission;
+                    var type = cars[index].Type;
+                    var brandCheck = selectedCarList.length > 0 ? selectedCarList.includes(brand) : true;
+                    var fuelCheck = selectedFuelList.length > 0 ? selectedFuelList.includes(fuel) : true;
+                    var transmissionCheck = selectedTransmissionList.length > 0 ? selectedTransmissionList.includes(trans) : true;
+                    var typeCheck = selectedTypesList.length > 0 ? selectedTypesList.includes(type) : true;
+
+
+                    var rangeCheck = false;
+                    if (selectedRange.length > 0) {
+                        var price = cars[index].Price;
+                        for (var index of selectedRange) {
+
+                            var min = range[index].min;
+                            var max = range[index].max;
+                            if (price >= min && price <= max) rangeCheck = true;
+                        }
+                    } else {
+                        rangeCheck = true;
+                    }
+                    var r = brandCheck && fuelCheck && transmissionCheck && typeCheck && rangeCheck;
+                    if (r) {
+                        $(this).removeClass('d-none');
+                    }
+                    else {
+                        $(this).addClass('d-none');
+                    }
+                    if (selectedCarList.length == 0 && selectedFuelList.length == 0 && selectedTransmissionList.length == 0 && selectedTypesList.length == 0 && selectedRange.length==0) {
+                        $(this).removeClass('d-none');
+                    }
+                });
+            });
+
+            //for card
+            $(".card").hover(
+                function () {
+
+                    $(this).animate({
+                        marginTop: "-1%",
+                    }, 400);
+
+                },
+
+                function () {
+                    $(this).animate({
+                        marginTop: "0",
+                    }, 400);
+                }
+
+            );
+            $("#sidebar").mCustomScrollbar({
+                theme: "minimal"
+            });
+
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar, #content').toggleClass('active');
+                $('.collapse.in').toggleClass('in');
+
+                $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+            });
+
+
+        });
+    </script>
+
+</body>
+
+</html>

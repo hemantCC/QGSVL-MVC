@@ -1,0 +1,91 @@
+﻿body {
+    font-family: 'Open Sans', sans-serif;
+    
+}
+
+table {
+    border-collapse: separate;
+    border-spacing: 1em;
+    background-color: #1F2739;
+    width: fit-content;
+}
+
+th{
+    color: white;
+    font-weight: bold;
+    box-shadow: 0 5px 5px 5px white;
+}
+
+td {
+    color: white;
+    font-weight: 500;
+    font-size: 1em;
+}
+
+h1 {
+    font-size: 3em;
+    font-weight: 900;
+    line-height: 1em;
+    text-align: center;
+    color: #4DC3FA;
+}
+
+.blue {
+    color: #185875;
+}
+
+.yellow {
+    color: darkgoldenrod
+}
+
+.active-btn:hover {
+    cursor: pointer;
+}
+
+
+.isDisabled:hover {
+    color: currentColor;
+    cursor: not-allowed;
+    opacity: 0.6;
+    text-decoration: none;
+    
+}
+.bs-example {
+    margin: 20px;
+}
+
+.container td:hover {
+    background-color: #FFF842;
+    color: #403E10;
+    font-weight: bold;
+    box-shadow: #7F7C21 -1px 1px, #7F7C21 -2px 2px, #7F7C21 -3px 3px, #7F7C21 -4px 4px, #7F7C21 -5px 5px, #7F7C21 -6px 6px;
+    transform: translate3d(6px, -6px, 0);
+    transition-delay: 0s;
+    transition-duration: 0.4s;
+    transition-property: all;
+    transition-timing-function: line;
+}
+
+
+.container td button:hover {
+    background-color: lightcyan;
+    color: black;
+}
+
+.warning{
+    color: red;
+}
+
+
+@media (min-width: 501px) and (max-width: 775px) {
+    .custom-font-size {
+        font-size: 35px;
+    }
+}
+
+@media (max-width: 500px) {
+    .custom-font-size {
+        font-size: 20px;
+    }
+}
+

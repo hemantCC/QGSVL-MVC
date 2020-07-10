@@ -1,0 +1,189 @@
+﻿@model QGS.Entities.BusinessEntities.UserVM
+
+
+@{
+    Layout = null;
+}
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <!-- MyLink -->
+    <link href="~/Content/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="~/Content/css/login.css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="~/Content/assets/css/fontawesome.css">
+    <link rel="stylesheet" href="~/Content/assets/css/templatemo-sixteen.css">
+    <link rel="stylesheet" href="~/Content/assets/css/owl.css">
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Custom styles for this template -->
+    <link href="~/Content/agency.min.css" rel="stylesheet">
+    <!-------------------------  Section Over-------------------------------->
+    <!------------------------Links For COUNTER  ------------------------------->
+
+    <link rel="stylesheet" href="~/Content/assets/css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+
+
+    <!-- MyLink -->
+    <title>Login</title>
+</head>
+
+<body>
+    <!--
+    <header class="">
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <a class="navbar-brand" href="/Home/Index"><h2>QGS<em>VL</em></h2></a>
+
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="index.html">
+                                Home
+
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Car/HomeCarDetails">Search Vehicle</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Home/Contact">Contact Us</a>
+                        </li>
+                        @if (User.Identity.Name == "")
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Account/Login">Sign In / Up</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Account/Logout">LogOut</a>
+                            </li>
+                        }
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>-->
+
+    <div class="container-fuild">
+        <div class="row">
+            <div class="col-md-8">
+                <img class="image" src="~/image/car2.jpg">
+            </div>
+            <div class="col-md-4">
+
+                <div class="box">
+                    <h1>Login Here</h1>
+
+                    <!--Form start-->
+                    @using (Html.BeginForm())
+                    {
+                        <form class="form-container" id="search-form" name="search-form">
+                            <div class="form-group">
+                                @Html.LabelFor(Model => Model.UserEmail)
+                                @Html.TextBoxFor(Model => Model.UserEmail, new { @class = "form-control", placeholder = "Enter your Email" })
+                                @Html.ValidationMessageFor(Model => Model.UserEmail)
+                                @*<small id="emailHelp" class="form-text">We'll never share your email with anyone else.</small>*@
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(Model => Model.Password)
+                                @Html.PasswordFor(Model => Model.Password, new { @class = "form-control", placeholder = "Enter your password" })
+                                @Html.ValidationMessageFor(Model => Model.Password)
+                            </div>
+
+
+                            @*@Html.CheckBoxFor(Model => Model.IsAdmin)
+                                <label for="AdminCheck" style="display:inline">Admin Login </label>*@
+
+                            @*<input type="checkbox" id="AdminLogin" name="AdminLogin" value="AdminLogin">
+                                <label for="AdminLogin"> Admin Login</label><br>*@
+                            @*<div class="form-group">
+                                   @Html.Label("Admin Login")
+                                   @Html.CheckBox("AdminLogin", new { @class = "form-control" })
+                                </div>*@
+                            <input type="submit" name="submit" id="submit" value="Login" />
+                            @*<input type="submit" class="btn btn-primary btn-block mt-5">Login</input>*@
+                            <a href="#">Forgot password</a>
+                            <br />
+
+                            @Html.ActionLink("Register Here", "Register", "Account", new { @class = "btn btn-primary mt-5" })
+                        </form>
+                    }
+                    <!--Form end-->
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    @*<footer class="footer" style="background-color: black">
+            <div class="container" style="height: 60px;">
+                <div class="row justify-content-between">
+                    <div class="col-md-3 pt-3">
+                        <ul class="list-inline quicklinks">
+                            <li class="list-inline-item">
+                                <a href="#" style="color: white;">&copy;&nbsp;Quote Generation System</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6 pt-3">
+                        <ul class="list-inline quicklinks" style="color: white;">
+                            <li class="list-inline-item">
+                                |&nbsp;<a href="#" style="color: white;">Contact</a>
+                            </li>
+                            <li class="list-inline-item">
+                                |&nbsp;<a href="#" style="color: white;">Privacy Policy</a>
+                            </li>
+                            <li class="list-inline-item">
+                                |&nbsp;<a href="#" style="color: white;">Terms of Use</a>
+                            </li>
+                            <li class="list-inline-item">
+                                |&nbsp;<a href="#" style="color: white;">Cookie Policy</a>&nbsp;|
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>*@
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.11/jquery.validate.unobtrusive.min.js"></script>
+    @*<script src="~/Scripts/jquery.validate.min.js"></script>
+        <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>*@
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</body>
+
+</html>

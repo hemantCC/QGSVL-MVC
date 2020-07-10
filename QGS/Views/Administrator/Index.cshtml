@@ -1,0 +1,192 @@
+﻿@model IEnumerable<QGS.Entities.BusinessEntities.QuoteVM>
+
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+<div class="container-fluid">
+    
+    <div class="jumbotron">
+
+        <h1 class="text-center">Welcome @User.Identity.Name</h1>
+        <h3 class="text-center">
+            ADMIN DASHBOARD FOR <span style="background-color:black"><span style="color:white">QGS</span><em style="font-style:normal;color:red">VL</em></span>
+            @Html.ActionLink("Logout", "Logout", "Account", null, htmlAttributes: new { @class = "btn btn-danger float-right" })
+        </h3>
+    </div>
+    
+
+        @*<div class="row">
+
+            <div class="col-md-6 col-lg-6">
+                <p>
+                    @Html.ActionLink("Add New Quote", "", null, htmlAttributes: new { @class = "btn btn-success" })
+                    <div class="alert-warning">Note: It will redirect you to Customer car selection page.</div>
+                </p>
+            </div>
+            <div class="col-md-12 col-lg-12">
+                
+            </div>
+            <br />
+        </div>*@
+    <div class="row">
+        <table class="table table-striped">
+            <tr>
+                <th>
+                    Quote ID
+                </th>
+                @*<th>
+                    Customer
+                </th>*@
+                <th>
+                    Car Selected
+                </th>
+                <th>
+                    Rent Date
+                </th>
+                <th>
+                    Payback Time
+                </th>
+                <th>
+                    Insurance Term
+                </th>
+                <th>
+                    Mileage
+                </th>
+                <th>
+                    Total Price
+                </th>
+                <th>
+                    Quote Status
+                </th>
+                <th class="text-center">
+                    Actions
+                </th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.QuoteId)
+                    </td>
+                    @*<td>
+                        @Html.DisplayFor(modelItem => item.UserEmail)
+                    </td>*@
+                    <th>
+                        @Html.DisplayFor(modelItem => item.Brand) @Html.DisplayFor(modelItem => item.ModelName)
+                    </th>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Date)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PaybackTime_Month_) Months
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Term_Month_) Months
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Mileage_K_) Km
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TotalPrice)€
+                    </td>
+                    <td id="status">
+                        @Html.DisplayFor(modelItem => item.Status)
+                    </td>
+                    <td>
+
+
+                        <a href="@Url.Action("Edit", new { id = item.QuoteId })" class="btn-lg btn-warning mr-2"><i class="fa fa-pencil"></i></a> 
+                        @*<a href="@Url.Action("", new { id = item.QuoteId })" class="btn-lg btn-secondary mx-2"
+                           data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-info-circle"></i> </a> |
+                        <a href="@Url.Action("Delete", new { id = item.QuoteId })" class="btn-lg btn-danger ml-2"><i class="fa fa-trash"></i> </a>*@
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLongTitle">Quote Details</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+
+
+                                        <!--Edit Details-->
+
+
+                                        <div class="row">
+                                            <strong class="col-md-6">@Html.DisplayNameFor(model => model.QuoteId)</strong>
+                                            <div class="col-md-6">@Html.DisplayFor(model => item.QuoteId)</div>
+                                        </div>
+                                        <div class="row mt-2">
+                                            <strong class="col-md-6">@Html.DisplayNameFor(model => model.Date)</strong>
+                                            <div class="col-md-6">@Html.DisplayFor(model => item.Date)</div>
+                                        </div>
+                                        <div class="row mt-2">
+                                            <strong class="col-md-6">@Html.DisplayNameFor(model => model.UserEmail)</strong>
+                                            <div class="col-md-6">@Html.DisplayFor(model => item.UserEmail)</div>
+                                        </div>
+                                        <div class="row mt-2">
+                                            <strong class="col-md-6">@Html.DisplayNameFor(model => model.Contact)</strong>
+                                            <div class="col-md-6">@Html.DisplayFor(model => item.Contact)</div>
+                                        </div>
+                                        <div class="row mt-2">
+                                            <strong class="col-md-6">@Html.DisplayNameFor(model => model.Brand)</strong>
+                                            <div class="col-md-6">@Html.DisplayFor(model => item.Brand)</div>
+                                        </div>
+                                        <div class="row mt-2">
+                                            <strong class="col-md-6">@Html.DisplayNameFor(model => model.ModelName)</strong>
+                                            <div class="col-md-6">@Html.DisplayFor(model => item.ModelName)</div>
+                                        </div>
+                                        <div class="row mt-2">
+                                            <strong class="col-md-6">@Html.DisplayNameFor(model => model.Mileage_K_)</strong>
+                                            <div class="col-md-6">@Html.DisplayFor(model => item.Mileage_K_)</div>
+                                        </div>
+                                        <div class="row mt-2">
+                                            <strong class="col-md-6">@Html.DisplayNameFor(model => model.TotalPrice)</strong>
+                                            <div class="col-md-6">@Html.DisplayFor(model => item.TotalPrice)</div>
+                                        </div>
+                                        <div class="row mt-2">
+                                            <strong class="col-md-6">@Html.DisplayNameFor(model => model.Status)</strong>
+                                            <div class="col-md-6">@Html.DisplayFor(model => item.Status)</div>
+                                        </div>
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+
+</div>
+
+    <script>
+
+        var msg = "@TempData["LoginSuccess"]"
+
+        if (msg != '') {
+            swal("Login Successful!", "You succesfully logged in !", "success");
+        }
+
+    </script>
+
+
